@@ -1,0 +1,2 @@
+mvn install:install-file -Dfile=ojdbc5.jar -DgroupId=com.oracle.jdbc -DartifactId=ojdbc5 -Dversion=11.2.0.3 -Dpackaging=jar
+mvn install:install-file -Dfile=sqljdbc.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc -Dversion=4.0 -Dpackaging=jar

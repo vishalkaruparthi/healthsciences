@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jd="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+			http://www.springframework.org/schema/jdbc
+       		http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+       		http://www.springframework.org/schema/tx 
+       		http://www.springframework.org/schema/tx/spring-tx.xsd
+       		http://www.springframework.org/schema/util
+       		http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<import resource="applicationContext-data-source.xml" />
+
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.healthsciences.services.web.controllers,com.healthsciences.services.facade.*,com.healthsciences.services.infrastructure.persistence.hibernate" />
+	
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="false">
+			<ref bean="jsonConverter" />
+			<ref bean="jaxbConverter" />
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<bean name="jsonConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="objectMapper">
+			<bean class="com.healthsciences.services.web.dto.mappers.JsonMapper" />
+		</property>
+	</bean>
+
+	<bean name="jaxbConverter"
+		class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
+	</bean>
+<!-- bean name="jsonConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="objectMapper">
+			<bean class="com.abharana.services.web.dto.mappers.JsonMapper" />
+		</property>
+	</bean>
+
+	<bean name="jaxbConverter"
+		class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"></bean-->
+	<bean id="propertiesPlacholder"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		lazy-init="false">
+		<property name="locations">
+			<list>
+				<value>classpath:/properties/rdbm.properties</value>
+				<value>classpath:/properties/app.properties</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>
