@@ -22,13 +22,17 @@
 			          <input id="orgname" type="text" class="validate" ng-model="ctrlinit.newDetails.orgname">
 			          <label for="orgname">Name of organization and department</label>
 			        </div>
-				</div>
+				</div> <!-- ORGNAME -->
+				
+				
 				<div class="row">
 					<div class="input-field col s12">
 						<input id="url" type="text" class="validate" ng-model="ctrlinit.newDetails.url">
 						<label for="url">URL for more information</label>
 					</div>
-				</div>
+				</div> <!-- URL -->
+				
+				
 				<div class="row">
 					<div class="input-field col s6">
 						<input id="contactperson" type="text" class="validate" ng-model="ctrlinit.newDetails.contactperson">
@@ -38,7 +42,9 @@
 						<input id="contactTitle" type="text" class="validate" ng-model="ctrlinit.newDetails.contactTitle">
 						<label for="contactTitle">Title</label>
 					</div>
-				</div>
+				</div><!-- CONTACT -->
+	
+	
 				<div class="row">
 			    	<div class="input-field col s6">
 			         	<input id="email" type="email" class="validate" ng-model="ctrlinit.newDetails.email">
@@ -50,7 +56,7 @@
 			          	<label for="icon_telephone">Telephone</label>
 			        </div>
 			        
-			  	</div>
+			  	</div> <!-- EMAIL/PHONE -->
 			  	
 			  	<div class="row">
 			  		<label for="typeOfInternships">Type of Internship (click all that apply)</label>
@@ -74,13 +80,16 @@
 	      					<label for="filled-in-box4">Wellness Management</label>
 	      				</div>
 			  		</div>
-			  	</div>
+			  	</div> <!-- TOI -->
+			  	
+			  	
 			  	<div class="row">
 			  		<div class="input-field col s12">
 			          <input id=internDesc type="text" class="validate" ng-model="ctrlinit.newDetails.internDesc">
 			          <label for="internDesc">Description of Internship</label>
 			        </div>
-			  	</div>
+			  	</div>  <!-- DESCRIPTION -->
+			  	
 			  	
 			  	<div class="row" style="margin-left:20px;">
 			  		<label for="hoursPreferred">For how many hours do you prefer the student?</label>
@@ -106,7 +115,9 @@
 	      					<label for="hoursPreferred5">We are flexible </label>
 				  		</div>
 			  		</div>
-			  	</div>
+			  	</div><!-- HOURS -->
+			  	
+			  	
 			  	<div class="row">
 			  		
 					<label for="internLocation">Internship Location</label>
@@ -137,36 +148,38 @@
 			  		<div  id="internshipAmount">
 			  			<div class="row">
 			  				<div class="input-field col s3">
-					  			<input class="with-gap" name="group1" type="radio" id="noPay" value="int1" ng-click="ctrlinit.wageOnClick($event)"/>
+					  			<input class="with-gap" name="group2" type="radio" id="noPay" value=1 ng-model='ctrlinit.newDetails.paymentType'/>
 		      					<label for="noPay">No </label>
 		      				</div>
 				  		</div>
 				  		<div class="row" style="margin-top:-20px">
 				  			<div class="input-field col s3">
-				  				<input class="with-gap" name="group1" type="radio" id="stipendAmount" value="int2" ng-click="ctrlinit.wageOnClick($event)"/>
+				  				<input class="with-gap" name="group2" type="radio" id="stipendAmount" value=2 ng-model='ctrlinit.newDetails.paymentType'/>
 	      						<label for="stipendAmount">Stipend Amount </label>	
 				  			</div>
 	      					<div class="input-field col s3">
-					           <input placeholder="Stipend Amount" id="Stipend_Amount" type="text" class="validate" ng-disabled='!ctrlinit.wageType.int2' ng-model="ctrlinit.newDetails.amount">
+					           <input placeholder="Stipend Amount" id="Stipend_Amount" type="text" class="validate" ng-disabled='ctrlinit.newDetails.paymentType != 2' ng-model="ctrlinit.int2">
 	      					</div>
 				  		</div>
 				  		<div class="row" style="margin-top:-100px" >
 				  			<div class="input-field col s3">
-				  				<input class="with-gap" name="group1" type="radio" id="wageAmount" value="int3" ng-click="ctrlinit.wageOnClick($event)" />
+				  				<input class="with-gap" name="group2" type="radio" id="wageAmount" value=3 ng-model='ctrlinit.newDetails.paymentType' />
 	      						<label for="wageAmount">Wage Amount </label>
 				  			</div>
 	      					<div class="input-field col s3">
-	      						<input placeholder="Wage Amount" id="Wage_Amount" type="text" class="validate" ng-disabled='!ctrlinit.wageType.int3' ng-model="ctrlinit.newDetails.amount">
+	      						<input placeholder="Wage Amount" id="Wage_Amount" type="text" class="validate" ng-disabled='ctrlinit.newDetails.paymentType != 3' ng-model="ctrlinit.int3">
 	      					</div>
 				  		</div>
 			  		</div>
-			  	</div>
+			  	</div><!-- AMOUNT -->
+			  	
+			  	
 			  	<div class="row">
 			  		<div class="input-field col s12">
-			          <input id=specSkills type="text" class="validate">
+			          <input id=specSkills type="text" class="validate" ng-model="ctrlinit.newDetails.specialSkills">
 			          <label for="specSkills">Any special skills, preferences or other information?</label>
 			        </div>
-			  	</div>
+			  	</div><!-- SPECIAL SKILLS -->
 			  	
 			  	
 			  	<button class="btn waves-effect waves-light" type="submit" name="action" ng-click="ctrlinit.registernewdetails">Submit

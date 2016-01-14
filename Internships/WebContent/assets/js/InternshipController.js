@@ -17,7 +17,7 @@ angular.module('internship-form', ['internship-form-opps-service']).controller('
 	 * 				stateID: "",
 	 * 				zipCode : "",
 	 * 				amount : "",
-	 * 				
+	 * 				specialSkills : ""
 	 * 				
 	 * 			}
 	 */
@@ -26,19 +26,10 @@ angular.module('internship-form', ['internship-form-opps-service']).controller('
 	self.typeOfinternship = {"a":false,"b":false, "c":false, "d":false};
 	self.wageType = {"int1":false, "int2":false, "int3":false};
 	self.stateList = stateList;
-	self.wageOnClick = function(obj){
-		var woc = self.wageType;
-		for ( var woc_key in woc) {
-			self.wageType[woc_key] = obj.target.value === woc_key;
-		}
-		if(obj.target.value === "int1"){
-			self.newDetails.amount = 0;
-		}
-	}
 	
 	self.registernewdetails = function(){
 		self.newDetails.toi = toiJsontoString(self.typeOfinternship);
-		
+		self.newDetails.amount = self['int'+self.newDetails.paymentType] || 0;
 		console.log(self.newDetails);
 	}
 	

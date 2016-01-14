@@ -36,7 +36,7 @@ import com.healthsciences.services.domain.repositories.criteria.BaseSearchCriter
 /**
  * Base repository for all domain models
  * 
- * @author mkol
+ * 
  * 
  * @param <T>
  * @param <E>
@@ -57,7 +57,7 @@ public abstract class BaseRepository<T extends AbstractEntity, E extends BaseSea
     /*
      * (non-Javadoc)
      * 
-     * @see com.kony.es.repositories.IBaseRepository#getRowLimit()
+     * 
      */
     public int getRowLimit() {
         return rowLimit;
@@ -117,9 +117,8 @@ public abstract class BaseRepository<T extends AbstractEntity, E extends BaseSea
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * com.kony.es.repositories.IBaseRepository#save(com.abharana.services.domain
-     * .model .AbstractEntity)
+     * 
+     * 
      */
     public void save(T obj) {
         em.persist(obj);
@@ -128,9 +127,7 @@ public abstract class BaseRepository<T extends AbstractEntity, E extends BaseSea
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * com.kony.es.repositories.IBaseRepository#remove(com.abharana.services.domain
-     * .model .AbstractEntity)
+     * 
      */
     public void remove(T obj) {
         em.remove(obj);
@@ -139,9 +136,7 @@ public abstract class BaseRepository<T extends AbstractEntity, E extends BaseSea
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * com.kony.es.repositories.IBaseRepository#refresh(com.abharana.services.domain
-     * .model .AbstractEntity)
+     *
      */
     public void refresh(T obj) {
         em.getEntityManagerFactory().getCache().evictAll();
@@ -151,7 +146,7 @@ public abstract class BaseRepository<T extends AbstractEntity, E extends BaseSea
     /*
      * (non-Javadoc)
      * 
-     * @see com.kony.es.repositories.IBaseRepository#get(java.util.UUID)
+     *
      */
     public T get(UUID objId) {
         em.flush();
@@ -161,7 +156,7 @@ public abstract class BaseRepository<T extends AbstractEntity, E extends BaseSea
     /*
      * (non-Javadoc)
      * 
-     * @see com.kony.es.repositories.IBaseRepository#get(String)
+     *
      */
     public T get(String objId) {
         em.flush();
@@ -171,7 +166,7 @@ public abstract class BaseRepository<T extends AbstractEntity, E extends BaseSea
     /*
      * (non-Javadoc)
      * 
-     * @see com.kony.es.repositories.IBaseRepository#get(Long)
+     * 
      */
     public T get(Long id) {
         em.flush();
@@ -181,7 +176,7 @@ public abstract class BaseRepository<T extends AbstractEntity, E extends BaseSea
     /*
      * (non-Javadoc)
      * 
-     * @see com.kony.es.repositories.IBaseRepository#get(Integer)
+     * 
      */
     public T get(Integer id) {
         em.flush();
@@ -191,8 +186,7 @@ public abstract class BaseRepository<T extends AbstractEntity, E extends BaseSea
     /*
      * (non-Javadoc)
      * 
-     * @see com.kony.es.repositories.IBaseRepository#valueInSet(Set<T> set, T
-     * value)
+     * 
      */
     public boolean valueInSet(Set<T> set, T value) {
         boolean result = false;
@@ -209,8 +203,7 @@ public abstract class BaseRepository<T extends AbstractEntity, E extends BaseSea
     /*
      * (non-Javadoc)
      * 
-     * @see com.kony.es.repositories.IBaseRepository#getAll(int, int,
-     * java.lang.String)
+     * 
      */
 
     public List<T> getAll(int startIndex, int pageSize, String orderField) {
@@ -239,7 +232,7 @@ public abstract class BaseRepository<T extends AbstractEntity, E extends BaseSea
     /*
      * (non-Javadoc)
      * 
-     * @see com.kony.es.repositories.IBaseRepository#getCount()
+     * 
      */
     public Long getCount() {
         return searchByCriteriaCount(null);

@@ -1,8 +1,4 @@
-/**
- * COPYRIGHT (C) 2013 KonyLabs. All Rights Reserved.
- * 
- * @author rbanking
- */
+
 package com.healthsciences.services.domain.model;
 
 import javax.persistence.MappedSuperclass;

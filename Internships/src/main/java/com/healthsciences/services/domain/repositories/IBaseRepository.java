@@ -11,7 +11,7 @@ import com.healthsciences.services.domain.model.AbstractEntity;
 /**
  * Base repository interface for domain model
  * 
- * @author mkol
+ * 
  * 
  * @param <T>
  */
