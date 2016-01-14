@@ -6,11 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Generated;
-
 @Entity
 @Table(name="hours_work")
-public class HoursWork {
+public class HoursWork extends AbstractEntity<Integer>{
 	@Id
 	@GeneratedValue
 	@Column(name="Hours_ID")
@@ -56,7 +54,5 @@ public class HoursWork {
 	public void setTotal_hours(Integer total_hours) {
 		this.total_hours = total_hours;
 	}
-	
-	
-	
+		
 }

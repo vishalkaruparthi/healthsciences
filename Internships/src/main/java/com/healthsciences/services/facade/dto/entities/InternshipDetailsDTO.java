@@ -2,6 +2,8 @@ package com.healthsciences.services.facade.dto.entities;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.joda.time.LocalDateTime;
+
 import com.healthsciences.services.domain.model.HoursWork;
 
 @XmlRootElement(name = "internship")
@@ -16,8 +18,56 @@ public class InternshipDetailsDTO {
 	private String internTypeID;
 	private String internDesc;
 	private HoursWorkDTO hours_work;
+	private String city;
+	private String zipcode;
+	private String specialSkills;
+	private String paytype;
+	private String payamount;
+	private LocalDateTime postedDate;
+	private StateDTO stateId;
 	
-	
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	public String getSpecialSkills() {
+		return specialSkills;
+	}
+	public void setSpecialSkills(String specialSkills) {
+		this.specialSkills = specialSkills;
+	}
+	public String getPaytype() {
+		return paytype;
+	}
+	public void setPaytype(String paytype) {
+		this.paytype = paytype;
+	}
+	public String getPayamount() {
+		return payamount;
+	}
+	public void setPayamount(String payamount) {
+		this.payamount = payamount;
+	}
+	public LocalDateTime getPostedDate() {
+		return postedDate;
+	}
+	public void setPostedDate(LocalDateTime postedDate) {
+		this.postedDate = postedDate;
+	}
+	public StateDTO getStateId() {
+		return stateId;
+	}
+	public void setStateId(StateDTO stateId) {
+		this.stateId = stateId;
+	}
 	public String getURL() {
 		return URL;
 	}

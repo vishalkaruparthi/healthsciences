@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.28)
 # Database: healthsciences_interships
-# Generation Time: 1937-10-17 13:54:17 +0000
+# Generation Time: 1937-10-18 19:11:29 +0000
 # ************************************************************
 
 
@@ -62,28 +62,74 @@ CREATE TABLE `internship_details` (
   `Personal_Email` varchar(100) DEFAULT NULL,
   `Internship_Type_ID` varchar(50) DEFAULT NULL,
   `Internship_Description` varchar(1000) DEFAULT NULL,
-  `Hours_ID` int(11) NOT NULL,
+  `Hours_ID` int(11) DEFAULT NULL,
   `City` varchar(50) DEFAULT NULL,
-  `State` varchar(50) DEFAULT NULL,
-  `Zipcode` int(11) DEFAULT NULL,
+  `Zipcode` varchar(50) DEFAULT NULL,
   `Special_Skills` varchar(200) DEFAULT NULL,
   `Pay_Type` varchar(200) DEFAULT NULL,
   `Pay_Amount` varchar(200) DEFAULT NULL,
+  `Posted_Date` timestamp NULL DEFAULT NULL,
+  `State_ID` int(11) DEFAULT NULL,
   KEY `id` (`id`),
   KEY `FK_internship_details_hours_work` (`Hours_ID`),
-  CONSTRAINT `FK_internship_details_hours_work` FOREIGN KEY (`Hours_ID`) REFERENCES `hours_work` (`Hours_ID`)
+  KEY `State_ID` (`State_ID`),
+  CONSTRAINT `FK_internship_details_hours_work` FOREIGN KEY (`Hours_ID`) REFERENCES `hours_work` (`Hours_ID`),
+  CONSTRAINT `internship_details_ibfk_1` FOREIGN KEY (`State_ID`) REFERENCES `state` (`State_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `internship_details` WRITE;
 /*!40000 ALTER TABLE `internship_details` DISABLE KEYS */;
 
-INSERT INTO `internship_details` (`id`, `organization_Name`, `URL`, `Contact_Person_name`, `Phone_number`, `Personal_Email`, `Internship_Type_ID`, `Internship_Description`, `Hours_ID`, `City`, `State`, `Zipcode`, `Special_Skills`, `Pay_Type`, `Pay_Amount`)
+INSERT INTO `internship_details` (`id`, `organization_Name`, `URL`, `Contact_Person_name`, `Phone_number`, `Personal_Email`, `Internship_Type_ID`, `Internship_Description`, `Hours_ID`, `City`, `Zipcode`, `Special_Skills`, `Pay_Type`, `Pay_Amount`, `Posted_Date`, `State_ID`)
 VALUES
-	(1,'GOOGLE','www.google.com','raja','5558885454','rpk003@shsu.edu','Int1','xxyy',1,'Seatle','WA',54845,'Wen services','stipend','15'),
-	(2,'GOOGLE','www.google.com','Vishal','3489528934','rpk003@shsu.edu','Int2','xxyy',3,'Seatle','WA',54845,'Wen services','stipend','15'),
-	(3,'GOOGLE','www.google.com','Dad','3489528934','rpk003@shsu.edu','Int2','xxyy',1,'Seatle','WA',54845,'Wen services','stipend','15');
+	(1,'GOOGLE','www.google.com','raja','5558885454','rpk003@shsu.edu','Int1','xxyy',1,'Seatle','54845','Wen services','stipend','15','2015-08-25 19:59:00',1),
+	(2,'Amazon','www.google.com','Vishal','3489528934','rpk003@shsu.edu','Int2','xxyy',3,'Seatle','54845','Wen services','stipend','15','2015-08-23 21:00:00',1),
+	(3,'Flipkart','www.google.com','Dad','3489528934','rpk003@shsu.edu','Int2','xxyy',1,'Seatle','54845','Wen services','stipend','15','2015-08-24 20:00:00',1);
 
 /*!40000 ALTER TABLE `internship_details` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table state
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `state`;
+
+CREATE TABLE `state` (
+  `State_ID` int(11) NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  PRIMARY KEY (`State_ID`),
+  UNIQUE KEY `State_ID_UNIQUE` (`State_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `state` WRITE;
+/*!40000 ALTER TABLE `state` DISABLE KEYS */;
+
+INSERT INTO `state` (`State_ID`, `Name`)
+VALUES
+	(1,'Alabama'),
+	(2,'Alaska'),
+	(3,'Arizona'),
+	(4,'Arkansas'),
+	(5,'California'),
+	(6,'Colorado'),
+	(7,'Delaware'),
+	(8,'Florida'),
+	(9,'Georgia'),
+	(10,'Hawaii'),
+	(11,'Idaho'),
+	(12,'Illinois'),
+	(13,'Indiana'),
+	(14,'Iowa'),
+	(15,'Kansas'),
+	(16,'Kentucky'),
+	(17,'Louisiana'),
+	(18,'Maine'),
+	(19,'Maryland'),
+	(20,'Massachusetts'),
+	(21,'Michigan');
+
+/*!40000 ALTER TABLE `state` ENABLE KEYS */;
 UNLOCK TABLES;
 
 

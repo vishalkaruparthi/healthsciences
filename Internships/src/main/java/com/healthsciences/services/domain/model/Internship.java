@@ -1,5 +1,7 @@
 package com.healthsciences.services.domain.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name ="internship_details")
@@ -36,14 +40,96 @@ public class Internship extends AbstractEntity<Integer>{
 	
 	@Column(name="Internship_Description")
 	private String internDesc;
-
+	
 	
 	@ManyToOne
 	@JoinColumn(name="Hours_ID", nullable=false)
 	private HoursWork hours_work;
 	
+	@Column(name="City")
+	private String city;
+	
+	@Column(name="Zipcode")
+	private String zipcode;
+	
+	@Column(name="Special_Skills")
+	private String special_Skills;
+	
+	@Column(name="Pay_Type")
+	private String pay_type;
+	
+	@Column(name="Pay_Amount")
+	private String pay_Amount;
+	
+
+	@Column(name="Posted_Date")
+	@Type(type = "org.joda.time.contrib.hibernate.PersistentLocalDateTime")
+	private org.joda.time.LocalDateTime posted_Date;
+	
+	@ManyToOne
+	@JoinColumn(name="State_ID")
+	private State state;
+	
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getSpecial_Skills() {
+		return special_Skills;
+	}
+
+	public void setSpecial_Skills(String special_Skills) {
+		this.special_Skills = special_Skills;
+	}
+
+	public String getPay_type() {
+		return pay_type;
+	}
+
+	public void setPay_type(String pay_type) {
+		this.pay_type = pay_type;
+	}
+
+	public String getPay_Amount() {
+		return pay_Amount;
+	}
+
+	public void setPay_Amount(String pay_Amount) {
+		this.pay_Amount = pay_Amount;
+	}
+
+
+
+	public org.joda.time.LocalDateTime getPosted_Date() {
+		return posted_Date;
+	}
+
+	public void setPosted_Date(org.joda.time.LocalDateTime posted_Date) {
+		this.posted_Date = posted_Date;
+	}
+
 	public String getURL() {
 		return URL;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
 	}
 
 	public void setURL(String uRL) {

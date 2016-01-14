@@ -43,15 +43,7 @@
 	<bean name="jaxbConverter"
 		class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
 	</bean>
-<!-- bean name="jsonConverter"
-		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-		<property name="objectMapper">
-			<bean class="com.abharana.services.web.dto.mappers.JsonMapper" />
-		</property>
-	</bean>
 
-	<bean name="jaxbConverter"
-		class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"></bean-->
 	<bean id="propertiesPlacholder"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
 		lazy-init="false">

@@ -17,9 +17,6 @@
        		http://www.springframework.org/schema/util
        		http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<!-- bean class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" 
-		p:packagesToScan="com.kony.es.domains" p:jpaVendorAdapter-ref="hibernateVendor" 
-		p:dataSource-ref="ds" p:jpaPropertyMap-ref="jpaPropertyMap" / -->
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" />
@@ -34,88 +31,6 @@
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
 		p:showSql="false" />
 
-
-<!-- 	<beans profile="default">
-		<util:map id="jpaPropertyMap">
-			<entry key="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
-			Without this validation Tests for working with different databases 
-				are essentially meaningless
-			<entry key="hibernate.hbm2ddl.auto" value="validate" />
-			<entry key="hibernate.format_sql" value="true" />
-
-			https://hibernate.onjira.com/browse/HHH-7457 Hibernate guys strongly 
-				suggest to not use this <entry key="hibernate.enable_lazy_load_no_trans" 
-				value="true"/>
-		</util:map>
-		<jdbc:embedded-database id="ds" type="H2">
-			<jdbc:script location="classpath:ddl.sql" />
-		</jdbc:embedded-database>
-	</beans>
- -->
-<!-- 
-	<beans profile="oracle">
-		<util:map id="jpaPropertyMap">
-			<entry key="hibernate.dialect" value="${oracle.hibernate.dialect}" />
-			Without this validation Tests for working with different databases 
-				are essentially meaningless
-			<entry key="hibernate.hbm2ddl.auto" value="validate" />
-			<entry key="hibernate.format_sql" value="true" />
-		</util:map>
-
-		<bean id="ds"
-			class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="driverClassName" value="${oracle.driver}" />
-			<property name="url" value="${oracle.url}" />
-			<property name="username" value="${oracle.username}" />
-			<property name="password" value="${oracle.password}" />
-		</bean>
-
-	</beans>
-
-
-
-	<beans profile="db2">
-		<util:map id="jpaPropertyMap">
-			<entry key="hibernate.dialect" value="${db2.hibernate.dialect}" />
-			Without this validation Tests for working with different databases 
-				are essentially meaningless
-			<entry key="hibernate.hbm2ddl.auto" value="validate" />
-			<entry key="hibernate.format_sql" value="true" />
-		</util:map>
-
-		<bean id="ds"
-			class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="url" value="${db2.url}" />
-			<property name="username" value="${db2.username}" />
-			<property name="password" value="${db2.password}" />
-		</bean>
-
-	</beans>
-
-
-
-	<beans profile="postgres">
-		<util:map id="jpaPropertyMap">
-			<entry key="hibernate.dialect" value="${postgres.hibernate.dialect}" />
-			Without this validation Tests for working with different databases 
-				are essentially meaningless
-			<entry key="hibernate.hbm2ddl.auto" value="validate" />
-			<entry key="hibernate.jdbc.batch_size" value="100" />
-			<entry key="hibernate.format_sql" value="true" />
-			<entry key="hibernate.show_sql" value="false" />
-			<entry key="hibernate.show_sql" value="true" />
-		</util:map>
-
-		<bean id="ds"
-			class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="driverClassName" value="${postgres.driver}" />
-			<property name="url" value="${postgres.url}" />
-			<property name="username" value="${postgres.username}" />
-			<property name="password" value="${postgres.password}" />
-
-		</bean>
-		
-	</beans> -->
 	
 
 	<beans profile="mysql">

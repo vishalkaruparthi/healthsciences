@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Form for Internships</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.students_working_preference :checkbox').bind('change', function() {
+        var thisClass = $(this).attr('class');
+        if ($(this).attr('checked')) {
+            $('.students_working_preference :checkbox.' + thisClass + ":not(#" + this.id + ")").removeAttr('checked');
+        }
+        else {
+            $(this).attr('checked', 'checked');
+        }
+    });
+    $('.Pay_Information :checkbox').bind('change', function() {
+        var thisClass = $(this).attr('class');
+        if ($(this).attr('checked')) {
+            $('.Pay_Information :checkbox.' + thisClass + ":not(#" + this.id + ")").removeAttr('checked');
+        }
+        else {
+            $(this).attr('checked', 'checked');
+        }
+    });
+    
+});
+
+</script>
+</head>
+<body>
+<h1 style="color:blue; font-family: verdana;" align="center"> FORM FOR INTERNSHIPS</h1>
+<div style= margin-top:10px;>
+Name of the Organization: <input type="text" name="O_name"><br>
+</div>
+<div>
+URL for more information: <input type="text" name="url"><br>
+</div>
+<div>
+Contact Person: <input type="text" name="contact_person">Title:<input type="text" name="title"><br>
+</div>
+<div>
+<label>Contact Phone number: </label><input type="text" name="O_name">Contact email : <input type="text" name="O_name">
+</div>
+Type of Internship (Check all that applied) <br>
+<input type="checkbox" name="publichealth" value="Public Health/Health Promotion">
+Public Health/Health Promotion
+<input type="checkbox" name="Health Care Administration" value="Health Care Administration">
+Health Care Administration
+<input type="checkbox" name="Bilingual Health" value="Bilingual Health">
+Bilingual Health
+<input type="checkbox" name="Wellness Management" value="Wellness Management">
+Wellness Management<br>
+
+<div class="students_working_preference" style= margin-top:10px;>
+	<label for="students_working_preference_label"> For how many hours do you prefer the student should work?</label><br>
+	<input type="checkbox" name="option" value="checkedVisibleOSH" id="students_working_preference_one_sem_half"  /> Half time for one semester <br>
+	<input type="checkbox" name="option" value="checkedVisibleOSF" id="students_working_preference_one_sem_full" /> Full time for one semester <br>
+	<input type="checkbox" name="option" value="checkedVisibleTSQ" id="students_working_preference_two_sem_quart" />  Quarter time for two semesters<br>
+	<input type="checkbox" name="option" value="checkedVisibleTSH" id="students_working_preference_two_sem_half" /> Half time for two semesters <br>
+	<input type="checkbox" name="option" value="checkedVisibleFlexible" id="students_working_preference_Flexible" /> We are flexible <br>                
+</div>
+<div style= margin-top:10px;>
+	<label for="Internship_Location">Internship Location:</label>
+	<label for="city">City</label><input type="text" name="City">
+	<label for="state"> State</label>
+		<select name="state">
+		
+		</select>
+	<label for="zip code">   ZipCode</label><input type="text" name="ZipCode">
+</div>
+<div class="Pay_Information" style= margin-top:10px;>
+	<label for="Pay_for_the_Internship">Is Internship Paid?</label>
+	<input type="checkbox" name="option" value="checkedVisibleNo" id="Payment_No"  /> No <br>
+	<input class="Payment_Stipend" type="checkbox" name="option" value="checkedVisible_Stipend" onclick=enabled() /> 
+	<label for="Amount_stipend">Stipend Amount</label>
+	<input type="text" id="stipend_amount" name="Stipent_amount" disabled="disabled"><br>
+	<input class="Payment_Wage" type="checkbox" name="option" value="checkedVisible_Wage" onclick=enabled() /> 
+	<label for="Amount_Wage">Wage Amount</label>
+	<input type="text" id="wage_amount" name="Stipend_Wage" disabled="disabled" ><br>
+</div>
+<div style= margin-top:10px;>
+	<label>Any Special skills, Preferences or other information?</label><br>
+	<textarea rows="4" cols="50" style="color:blue; font-family: verdana;">
+	</textarea>
+</div>
+<div>
+	<button  class="form_internship_submit_button" type="button" >Submit</button>
+</div>
+</body>
+</html>
