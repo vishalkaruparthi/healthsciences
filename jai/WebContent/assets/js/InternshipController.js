@@ -1,4 +1,5 @@
-angular.module('internship-form', ['internship-form-opps-service']).controller('internship-form-controller',['toiJsontoString', 'stateList', function(toiJsontoString, stateList){
+angular.module('internship-form', ['internship-form-opps-service']).controller('internship-form-controller',
+		['toiJsontoString', 'stateList', function(toiJsontoString, stateList){
 	var self = this;
 	self.titleA = "FORM FOR INTERNSHIPS (* Required Fields)";//Title of the page
 	/*
@@ -21,11 +22,18 @@ angular.module('internship-form', ['internship-form-opps-service']).controller('
 	 * 				
 	 * 			}
 	 */
+	self.stateList = stateList.then;
+	stateList.then(function(value) {
+		self.stateList = value;
+		}, function(reason) {
+		  alert('Failed to fetch states');
+		});
+	
+	
 	self.newDetails = {};
 	self.stipendAmountHide = true;
 	self.typeOfinternship = {"a":false,"b":false, "c":false, "d":false};
-	self.wageType = {"int1":false, "int2":false, "int3":false};
-	self.stateList = stateList;
+
 	
 	self.registernewdetails = function(){
 		self.newDetails.toi = toiJsontoString(self.typeOfinternship);

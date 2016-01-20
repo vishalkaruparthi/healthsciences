@@ -129,8 +129,10 @@
 							
 						</div>
 						<div class="input-field col s3">
+							<label for="state">State</label>
 							<select id="State" class="browser-default" ng-model="ctrlinit.newDetails.stateID">
-								<option ng-repeat="state in ctrlinit.stateList" value={{state.id}}>{{state.name}}</option>
+							
+								<option ng-repeat="state in ctrlinit.stateList" value={{state.stateid}}>{{state.state_name}}</option>
 							</select>
 							
 						</div>
@@ -176,8 +178,8 @@
 			  	
 			  	<div class="row">
 			  		<div class="input-field col s12">
-			          <input id=specSkills type="text" class="validate" ng-model="ctrlinit.newDetails.specialSkills">
-			          <label for="specSkills">Any special skills, preferences or other information?</label>
+			  			<textarea id="specSkills" class="materialize-textarea" ng-model="ctrlinit.newDetails.specialSkills"></textarea>
+			          	<label for="specSkills">Any special skills, preferences or other information?</label>
 			        </div>
 			  	</div><!-- SPECIAL SKILLS -->
 			  	
@@ -194,6 +196,7 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="assets/plugins/angular.min.js"></script>
 	<script src="assets/js/InternshipController.js"></script>
+	<script src="assets/js/commonServices.js"></script>
 	<script src="assets/js/InternshipService.js"></script>
 	<script src="assets/plugins/materialize.js"></script>
 </body>
