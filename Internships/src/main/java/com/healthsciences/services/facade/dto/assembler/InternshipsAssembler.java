@@ -45,7 +45,42 @@ public class InternshipsAssembler {
 	}
 	public static void getIntenshipListCriteria2IntershipListCriteria(GetInternshipsListCriteriaDTO getCriteria, InternshipListCriteria listCriteria){
 		listCriteria.setStateID(getCriteria.getStateID());
-		listCriteria.setOrderField("posted_Date");
+		switch (getCriteria.getSortCriteria()) {
+			case 10:
+				listCriteria.setOrderField("posted_Date");
+				listCriteria.setOrderType("desc");
+				break;
+				
+			case 11:
+				listCriteria.setOrderField("posted_Date");
+				listCriteria.setOrderType("asc");
+				break;
+				
+			case 20:
+				listCriteria.setOrderField("pay_Amount");
+				listCriteria.setOrderType("desc");
+				break;
+				
+			case 21:
+				listCriteria.setOrderField("pay_Amount");
+				listCriteria.setOrderType("asc");
+				break;
+				
+			case 30:
+				listCriteria.setOrderField("organizationName");
+				listCriteria.setOrderType("desc");
+				break;
+				
+			case 31:
+				listCriteria.setOrderField("organizationName");
+				listCriteria.setOrderType("asc");
+				break;
+				
+			default:
+				listCriteria.setOrderField("posted_Date");
+				break;
+			}
+		
 	}
 	
 	public static void InternshipList2InternshipListDTO(List<Internship> intenshiplist, InternshipsListDTO listDTO){
