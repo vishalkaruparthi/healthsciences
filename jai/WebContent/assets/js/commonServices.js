@@ -22,3 +22,14 @@ commomServices.factory('httpcall', ['$http', function($http){
 		}).then(requestObj.successcallback, requestObj.errorcallback);
 	}
 }])
+
+function getUrlParams(){
+	var params = {};
+	var queryString = window.location.search.substring(1).split("&");
+	for(var i=0;i<queryString.length;i++){
+		var k = queryString[i].split("=")[0];
+		var v = queryString[i].split("=")[1];
+		params[k] = v; 
+	}
+	return params;
+}

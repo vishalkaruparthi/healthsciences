@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="internship-approve" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Approving...</title>
+</head>
+<body>
+	<div ng-controller="internship-approve-controller as iac">
+		<label ng-hide='iac.isApproved'>Approving record...</label>
+		<label ng-hide='!iac.isApproved'>Approved</label>
+	</div>
+	<script src="assets/plugins/angular.min.js"></script>
+	<script src="assets/js/commonServices.js"></script>
+	<script src="assets/js/InternshipService.js"></script>
+	<script src="assets/js/InternshipApproval.js"></script>
+</body>
+</html>

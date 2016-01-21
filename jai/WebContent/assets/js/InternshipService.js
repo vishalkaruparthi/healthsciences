@@ -63,5 +63,59 @@ internshipFormOppsService.factory('intenshipsByState', ['httpcall', '$q', functi
 		return promise;
 	}
 	return getInternshipsByState;
-}])
+}]);
 
+internshipFormOppsService.factory('internshipApproveSvc', ['httpcall', '$q', function(httpcall, $q){
+	var approveInternship = function(data){
+		var deferred = $q.defer();
+		var successcallback = function(resp){
+			deferred.resolve(resp.data);
+		}
+		var errorcallback = function(resp){
+			deferred.reject(resp);
+		}
+		var url = "http://localhost:8080/Internships/internships/approve/"+data.internshipID;
+		var requestObj = {
+				method : "GET",
+				"url" : url,
+				successcallback : successcallback,
+				errorcallback : errorcallback,
+				headers : {
+						'Content-Type': 'application/xml',
+						Accept: 'application/json'
+					}
+		}
+		httpcall(requestObj);
+		var promise = deferred.promise;
+		return promise;
+	}
+	return approveInternship;
+}]);
+
+internshipFormOppsService.factory('internshipSubmit', ['httpcall', '$q', function(httpcall, $q){
+	var submitInternship = function(data){
+		var deferred = $q.defer();
+		var successcallback = function(resp){
+			deferred.resolve(resp.data);
+		}
+		var errorcallback = function(resp){
+			deferred.reject(resp);
+		}
+		var url = "http://localhost:8080/Internships/internhsips/formSubmit";
+		var requestObj = {
+				method : "POST",
+				"url" : url,
+				successcallback : successcallback,
+				errorcallback : errorcallback,
+				headers : {
+						'Content-Type': 'application/xml',
+						Accept: 'application/json'
+					},
+				data : data+""
+		}
+		httpcall(requestObj);
+		var promise = deferred.promise;
+		return promise;
+	}
+	return submitInternship;
+}])
