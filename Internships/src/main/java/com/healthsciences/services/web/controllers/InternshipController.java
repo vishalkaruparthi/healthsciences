@@ -36,10 +36,17 @@ public class InternshipController {
 	
 	@RequestMapping(value="/formSubmit", method=RequestMethod.POST)
 	@ResponseBody
-	
 	public String setIntership(@RequestBody InternshipDetailsDTO setDetails){
-		
-		return internshipService.setInternships(setDetails);
+		//com.healthsciences.services.util.Mail.sendMail();
+		String returnValue = internshipService.setInternships(setDetails);
+		com.healthsciences.services.util.Mail.sendMail(setDetails, returnValue);
+		return returnValue;
+	}
+	
+	@RequestMapping(value="/approve/{internshipID}", method = RequestMethod.GET)
+	@ResponseBody
+	public boolean approveInternship(@PathVariable Integer internshipID){
+		return internshipService.approveInternship(internshipID);
 	}
 	
 	

@@ -34,6 +34,9 @@ public class InternshipRepository extends BaseRepository<Internship, InternshipL
 		if(criteria.getStateID()!= null && !"".equals(criteria.getStateID())){
         	predicateList.add(cb.equal(from.get("state").get("stateID"),criteria.getStateID()));
         }
+		if(criteria.getRecordType() != null && !"".equalsIgnoreCase(criteria.getRecordType())){
+			predicateList.add(cb.equal(from.get("recordStatus"), criteria.getRecordType()));
+		}
 		return predicateList;
 	}
 }

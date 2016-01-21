@@ -70,6 +70,17 @@ public class Internship extends AbstractEntity<Integer>{
 	@JoinColumn(name="State_ID")
 	private State state;
 	
+	@Column(name="Status")
+	private String recordStatus;
+	
+	public String getRecordStatus() {
+		return recordStatus;
+	}
+
+	public void setRecordStatus(String recordStatus) {
+		this.recordStatus = recordStatus;
+	}
+
 	public String getCity() {
 		return city;
 	}

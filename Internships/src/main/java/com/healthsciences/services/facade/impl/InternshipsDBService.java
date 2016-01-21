@@ -50,13 +50,23 @@ public class InternshipsDBService implements IInternShipsService{
 			Internship internship = new Internship();
 			InternshipsAssembler.InternshipDetailsDTO2InternshipDetails(setDetails, internship);
 			internshipRepo.save(internship);
-			status = "success";
+			internship.getInternshipID();
+			status = internship.getInternshipID().toString();
 		} catch (Exception e) {
 			// TODO: handle exception
 			status = "fail "+e.toString();
 		}
 		return status;
 	}
-	
+
+	public boolean approveInternship(Integer internshipID) {
+		try{
+			internshipRepo.get(internshipID).setRecordStatus("APPROVED");
+			return true;
+		}catch (Exception e) {
+			return false;
+		}
+		
+	}
 	
 }

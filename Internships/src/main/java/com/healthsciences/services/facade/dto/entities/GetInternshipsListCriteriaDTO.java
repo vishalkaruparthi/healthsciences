@@ -18,6 +18,7 @@ public class GetInternshipsListCriteriaDTO {
 	 *  
 	 */
 	private Integer sortCriteria;
+	private String recordType;
 	
 	public Integer getStateID() {
 		return stateID;
@@ -33,6 +34,14 @@ public class GetInternshipsListCriteriaDTO {
 
 	public void setSortCriteria(Integer sortCriteria) {
 		this.sortCriteria = sortCriteria;
+	}
+
+	public String getRecordType() {
+		return recordType;
+	}
+
+	public void setRecordType(String recordType) {
+		this.recordType = recordType;
 	}
 
 

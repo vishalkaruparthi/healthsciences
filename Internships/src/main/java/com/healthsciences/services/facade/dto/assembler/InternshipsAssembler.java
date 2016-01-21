@@ -45,6 +45,7 @@ public class InternshipsAssembler {
 	}
 	public static void getIntenshipListCriteria2IntershipListCriteria(GetInternshipsListCriteriaDTO getCriteria, InternshipListCriteria listCriteria){
 		listCriteria.setStateID(getCriteria.getStateID());
+		listCriteria.setRecordType(getCriteria.getRecordType());
 		switch (getCriteria.getSortCriteria()) {
 			case 10:
 				listCriteria.setOrderField("posted_Date");

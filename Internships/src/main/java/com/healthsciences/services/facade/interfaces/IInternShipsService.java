@@ -8,4 +8,5 @@ public interface IInternShipsService {
 	InternshipDetailsDTO getInternshipDetails(Integer internshipid);
 	InternshipsListDTO getInternshipList(GetInternshipsListCriteriaDTO getCriteria);
 	String setInternships(InternshipDetailsDTO setDetails);
+	boolean approveInternship(Integer internshipID);
 }
