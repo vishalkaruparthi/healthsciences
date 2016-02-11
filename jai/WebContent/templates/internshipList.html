@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="container">
+        <div class="col s3">
+            <a href="" class="collection-item" value=1 ng-click="ilc.statesShow(1)">state</a>
+        </div>
+        <div class="col s9" ng-show="ilc.currentDisplay == 1">
+            <div class="collection">
+                <a href="" class="collection-item" ng-repeat="state in ilc.stateList" value={{state.stateid}} ng-click="ilc.stateOnClick(state.stateid)">{{state.state_name}}</a>
+            </div>
+        </div>
+        <div class="col s9" ng-show="ilc.currentDisplay == 2">
+            <div class="collection">
+                <ul class="collection">
+                    <li class="collection-item avatar" ng-repeat="internships in ilc.internhsipsByState">
+                        <span class="title blue-text text-darken-2" > Internship type and Organization</span>
+
+                        <p><span class="blue-text text-darken-2" style="font-size: 12px">Organization Name:</span>
+                            <span style="font-size: 12px">{{internships.organizationName}}</span> <br>
+                            <span class="blue-text text-darken-2" style="font-size: 12px">Internship Type: </span>
+                            <span style="font-size: 12px">{{internships.internTypeID}}</span> <br>
+                            <span class="blue-text text-darken-2" style="font-size: 12px">Description: </span>
+                            <span style="font-size: 12px">{{internships.internDesc}}</span> <br>
+                            <span class="blue-text text-darken-2" style="font-size: 12px">Duration: </span>
+                            <span style="font-size: 12px">{{internships.internDesc}} </span>
+                            <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px"> Pay: </span>
+                            <span style="font-size: 12px"> ${{internships.payamount}} per hour</span>
+                            <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px"> URL: </span>
+                            <a target="_blank" style="font-size: 12px" href=http://{{internships.url}}> {{internships.url}}</a>
+                        </p>
+                        <span class=" title blue-text text-darken-2"> Contact Person Details</span>
+                        <p>
+                            <span class="blue-text text-darken-2" style="font-size: 12px">Name:</span>
+                            <span style="font-size: 12px">{{internships.contactPerson}} </span>
+                            <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px">Phone:</span>
+                            <span style="font-size: 12px">{{internships.phoneNumber}}</span>
+                            <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px">Email:</span>
+                            <span style="font-size: 12px">{{internships.email}}</span>
+                        </p>
+                        <p>
+                            <span style="font-size: 12px">{{internships.city}}, {{internships.stateId.state_name}} - {{internships.zipcode}}</span>
+                            <span class="blue-text text-darken-2" style="align:right;font-size:12px">Date Posted:</span>
+                            <span style="font-size: 12px">{{internships.postedDate}}</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

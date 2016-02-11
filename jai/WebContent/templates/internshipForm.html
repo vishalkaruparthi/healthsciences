@@ -1,0 +1,182 @@
+<div class="container col s12" id=formContentLayer1>
+    <div class="section">
+        <h5 class="center-align" ng-bind="ctrlinit.titleA"></h5>
+    </div>
+
+    <div class="row">
+        <form class="col s12"  ng-submit="ctrlinit.registernewdetails()" noValidate>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="orgname" type="text" class="validate" ng-model="ctrlinit.newDetails.orgname">
+                    <label for="orgname">Name of organization and department</label>
+                </div>
+            </div> <!-- ORGNAME -->
+
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="url" type="text" class="validate" ng-model="ctrlinit.newDetails.url">
+                    <label for="url">URL for more information</label>
+                </div>
+            </div> <!-- URL -->
+
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="contactperson" type="text" class="validate" ng-model="ctrlinit.newDetails.contactperson">
+                    <label for="contactperson">Contact Person</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="contactTitle" type="text" class="validate" ng-model="ctrlinit.newDetails.contactTitle">
+                    <label for="contactTitle">Title</label>
+                </div>
+            </div><!-- CONTACT -->
+
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="email" type="email" class="validate" ng-model="ctrlinit.newDetails.email">
+                    <label for="email" data-error="wrong" data-success="right">Email</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="icon_telephone" type="tel" class="validate" ng-model="ctrlinit.newDetails.telephone">
+                    <label for="icon_telephone">Telephone</label>
+                </div>
+
+            </div> <!-- EMAIL/PHONE -->
+
+            <div class="row">
+                <label for="typeOfInternships">Type of Internship (click all that apply)</label>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="checkbox" class="filled-in" id="filled-in-box1" value="true" ng-model='ctrlinit.typeOfinternship.a'/>
+                        <label for="filled-in-box1">Public Health/Health Promotion</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="checkbox" class="filled-in" id="filled-in-box2" value="true"  ng-model='ctrlinit.typeOfinternship.b'/>
+                        <label for="filled-in-box2">Health Care Administration</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="checkbox" class="filled-in" id="filled-in-box3" value="true" ng-model='ctrlinit.typeOfinternship.c'/>
+                        <label for="filled-in-box3">Bilingual Health</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="checkbox" class="filled-in" id="filled-in-box4" value="true" ng-model='ctrlinit.typeOfinternship.d'/>
+                        <label for="filled-in-box4">Wellness Management</label>
+                    </div>
+                </div>
+            </div> <!-- TOI -->
+
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id=internDesc type="text" class="validate" ng-model="ctrlinit.newDetails.internDesc">
+                    <label for="internDesc">Description of Internship</label>
+                </div>
+            </div>  <!-- DESCRIPTION -->
+
+
+            <div class="row" style="margin-left:20px;">
+                <label for="hoursPreferred">For how many hours do you prefer the student?</label>
+                <div class=row id="hoursPreferred" style="margin-top:10px">
+                    <div class="row">
+                        <input class="with-gap" name="group1" type="radio" id="hoursPreferred1" value="1" ng-model="ctrlinit.newDetails.hoursID"/>
+                        <label for="hoursPreferred1">Half time for one semester  (15-20 hrs/wk)  [200 hours total] </label>
+                    </div>
+                    <div class="row">
+                        <input class="with-gap" name="group1" type="radio" id="hoursPreferred2" value="2" ng-model="ctrlinit.newDetails.hoursID"/>
+                        <label for="hoursPreferred2">Full time for one semester (30-40 hrs/wk)  [400 hours total] </label>
+                    </div>
+                    <div class="row">
+                        <input class="with-gap" name="group1" type="radio" id="hoursPreferred3" value="3" ng-model="ctrlinit.newDetails.hoursID"/>
+                        <label for="hoursPreferred3">Quarter time for two semesters(7-10 hrs/wk)  [200 hours total] </label>
+                    </div>
+                    <div class="row">
+                        <input class="with-gap" name="group1" type="radio" id="hoursPreferred4" value="4" ng-model="ctrlinit.newDetails.hoursID"/>
+                        <label for="hoursPreferred4">Half time for two semesters (15-20 hrs/wk)  [400 hours total]</label>
+                    </div>
+                    <div class="row">
+                        <input class="with-gap" name="group1" type="radio" id="hoursPreferred5" value="5" ng-model="ctrlinit.newDetails.hoursID"/>
+                        <label for="hoursPreferred5">We are flexible </label>
+                    </div>
+                </div>
+            </div><!-- HOURS -->
+
+
+            <div class="row">
+
+                <label for="internLocation">Internship Location</label>
+                <div class="row" id="internLocation">
+                    <div class="input-field col s3">
+
+                        <input id="city" type="text" class="validate" ng-model="ctrlinit.newDetails.cityName">
+                        <label for="city">City</label>
+
+                    </div>
+                    <div class="input-field col s3">
+                        <label for="state">State</label>
+                        <select id="State" class="browser-default" ng-model="ctrlinit.newDetails.stateID">
+
+                            <option ng-repeat="state in ctrlinit.stateList" value={{state.stateid}}>{{state.state_name}}</option>
+                        </select>
+
+                    </div>
+                    <div class="input-field col s3">
+
+                        <input id="ZipCode" type="text" class="validate" ng-model="ctrlinit.newDetails.zipCode">
+                        <label for="ZipCode">ZipCode</label>
+                    </div>
+                </div><!-- div internLocation -->
+
+            </div>
+
+            <div class="row">
+                <label for="internshipAmount">*Is Internship paid?</label>
+                <div  id="internshipAmount">
+                    <div class="row">
+                        <div class="input-field col s3">
+                            <input class="with-gap" name="group2" type="radio" id="noPay" value=1 ng-model='ctrlinit.newDetails.paymentType'/>
+                            <label for="noPay">No </label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:-20px">
+                        <div class="input-field col s3">
+                            <input class="with-gap" name="group2" type="radio" id="stipendAmount" value=2 ng-model='ctrlinit.newDetails.paymentType'/>
+                            <label for="stipendAmount">Stipend Amount </label>
+                        </div>
+                        <div class="input-field col s3">
+                            <input placeholder="Stipend Amount" id="Stipend_Amount" type="text" class="validate" ng-disabled='ctrlinit.newDetails.paymentType != 2' ng-model="ctrlinit.int2">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:-100px" >
+                        <div class="input-field col s3">
+                            <input class="with-gap" name="group2" type="radio" id="wageAmount" value=3 ng-model='ctrlinit.newDetails.paymentType' />
+                            <label for="wageAmount">Wage Amount </label>
+                        </div>
+                        <div class="input-field col s3">
+                            <input placeholder="Wage Amount" id="Wage_Amount" type="text" class="validate" ng-disabled='ctrlinit.newDetails.paymentType != 3' ng-model="ctrlinit.int3">
+                        </div>
+                    </div>
+                </div>
+            </div><!-- AMOUNT -->
+
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="specSkills" class="materialize-textarea" ng-model="ctrlinit.newDetails.specialSkills"></textarea>
+                    <label for="specSkills">Any special skills, preferences or other information?</label>
+                </div>
+            </div><!-- SPECIAL SKILLS -->
+
+
+            <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="ctrlinit.registernewdetails">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+
+    </div>
+
+</div><!--  div formContentLayer1 -->
