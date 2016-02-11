@@ -107,7 +107,8 @@ public class InternshipsAssembler {
 		internship.setSpecial_Skills(detailsDTO.getSpecialSkills());
 		internship.setPay_type(detailsDTO.getPaytype());
 		internship.setPay_Amount(detailsDTO.getPayamount());
-		internship.setPosted_Date(detailsDTO.getPostedDate());	
+		internship.setPosted_Date(detailsDTO.getPostedDate());
+		internship.setRecordStatus(detailsDTO.getStatus());
 	
 		State state = new State();
 		state.setStateID(detailsDTO.getStateId().getStateid());
@@ -122,7 +123,4 @@ public class InternshipsAssembler {
 		internship.setHours_work(hoursWork);			
 		
 	}
-	
-
-	
 }

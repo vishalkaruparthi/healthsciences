@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.common.util.concurrent.Service.State;
 import com.healthsciences.services.domain.model.Internship;
 import com.healthsciences.services.domain.repositories.IInternshipRepository;
 import com.healthsciences.services.domain.repositories.criteria.InternshipListCriteria;
@@ -15,6 +16,9 @@ import com.healthsciences.services.facade.dto.entities.GetInternshipsListCriteri
 import com.healthsciences.services.facade.dto.entities.InternshipDetailsDTO;
 import com.healthsciences.services.facade.dto.entities.InternshipsListDTO;
 import com.healthsciences.services.facade.dto.entities.StateListDTO;
+import com.healthsciences.services.facade.exceptions.FacadeConstraintException;
+import com.healthsciences.services.facade.exceptions.FacadeEntityNotFoundExpection;
+import com.healthsciences.services.facade.exceptions.FacadeUnknownException;
 import com.healthsciences.services.facade.interfaces.*;
 
 @Service
@@ -24,16 +28,23 @@ public class InternshipsDBService implements IInternShipsService{
 	@Autowired
 	IInternshipRepository internshipRepo;
 	
-	public InternshipDetailsDTO getInternshipDetails(Integer internshipid) {
+	public InternshipDetailsDTO getInternshipDetails(Integer internshipid) throws FacadeEntityNotFoundExpection, FacadeUnknownException{
+		try {
+			Internship internship = internshipRepo.get(internshipid);
+			if(internship == null){
+				throw new FacadeEntityNotFoundExpection(Internship.class, internshipid);
+			}
+			InternshipDetailsDTO internshipDetails = new InternshipDetailsDTO();
+			InternshipsAssembler.Internship2InternshipdetailsDTO(internship, internshipDetails);
+			return internshipDetails;
+		} catch (Exception e) {
+			throw new FacadeUnknownException(e.getMessage());
+		}
 		
-		Internship internship = internshipRepo.get(internshipid);
-		InternshipDetailsDTO internshipDetails = new InternshipDetailsDTO();
-		InternshipsAssembler.Internship2InternshipdetailsDTO(internship, internshipDetails);
-		return internshipDetails;
 	}
 
-	public InternshipsListDTO getInternshipList(
-			GetInternshipsListCriteriaDTO getCriteria) {
+	public InternshipsListDTO getInternshipList (
+			GetInternshipsListCriteriaDTO getCriteria){
 		InternshipListCriteria listCriteria = new InternshipListCriteria();
 		InternshipsListDTO listDTO = new InternshipsListDTO();
 		InternshipsAssembler.getIntenshipListCriteria2IntershipListCriteria(getCriteria, listCriteria);
@@ -42,21 +53,19 @@ public class InternshipsDBService implements IInternShipsService{
 		return listDTO;
 	}
 
-	public String setInternships(InternshipDetailsDTO setDetails) {
-		// TODO Auto-generated method stub
+	public String setInternships(InternshipDetailsDTO setDetails) throws FacadeConstraintException{
 		String status;
 		try {
-			//InternshipDetailsDTO detailsDTO = new InternshipDetailsDTO();
 			Internship internship = new Internship();
 			InternshipsAssembler.InternshipDetailsDTO2InternshipDetails(setDetails, internship);
 			internshipRepo.save(internship);
 			internship.getInternshipID();
 			status = internship.getInternshipID().toString();
+			return status;
 		} catch (Exception e) {
-			// TODO: handle exception
-			status = "fail "+e.toString();
+			throw new FacadeConstraintException(e.getMessage());
 		}
-		return status;
+		
 	}
 
 	public boolean approveInternship(Integer internshipID) {

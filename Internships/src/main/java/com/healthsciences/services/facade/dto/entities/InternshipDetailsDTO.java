@@ -25,6 +25,7 @@ public class InternshipDetailsDTO {
 	private String payamount;
 	private LocalDateTime postedDate;
 	private StateDTO stateId;
+	private String status;
 	
 	public String getCity() {
 		return city;
@@ -121,6 +122,12 @@ public class InternshipDetailsDTO {
 	}
 	public void setOrganizationName(String organizationName) {
 		this.organizationName = organizationName;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }
