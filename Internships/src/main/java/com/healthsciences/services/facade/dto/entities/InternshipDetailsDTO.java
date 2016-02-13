@@ -1,5 +1,7 @@
 package com.healthsciences.services.facade.dto.entities;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.joda.time.LocalDateTime;
@@ -23,29 +25,13 @@ public class InternshipDetailsDTO {
 	private LocalDateTime postedDate;
 	private StateDTO stateId;
 	private String status;
-	private InternshipTypeListDTO internshipTypeList;
-	private AcademicPeriodListDTO academicPeriodList;
-	private HoursWorkListDTO hoursWorkList;
+	private List<InternshipTypeDTO> internshipTypeList;
+	private List<AcademicPeriodDTO> academicPeriodList;
+	private List<HoursWorkDTO> hoursWorkList;
 	private PayTypeDTO payType;
 	
-	public AcademicPeriodListDTO getAcademicPeriodList() {
-		return academicPeriodList;
-	}
-	public void setAcademicPeriodList(AcademicPeriodListDTO academicPeriodList) {
-		this.academicPeriodList = academicPeriodList;
-	}
-	public HoursWorkListDTO getHoursWorkList() {
-		return hoursWorkList;
-	}
-	public void setHoursWorkList(HoursWorkListDTO hoursWorkList) {
-		this.hoursWorkList = hoursWorkList;
-	}
-	public InternshipTypeListDTO getInternshipTypeList() {
-		return internshipTypeList;
-	}
-	public void setInternshipTypeList(InternshipTypeListDTO internshipTypeList) {
-		this.internshipTypeList = internshipTypeList;
-	}
+
+
 	public String getCity() {
 		return city;
 	}
@@ -135,6 +121,24 @@ public class InternshipDetailsDTO {
 	}
 	public void setPayType(PayTypeDTO payType) {
 		this.payType = payType;
+	}
+	public List<AcademicPeriodDTO> getAcademicPeriodList() {
+		return academicPeriodList;
+	}
+	public void setAcademicPeriodList(List<AcademicPeriodDTO> academicPeriodList) {
+		this.academicPeriodList = academicPeriodList;
+	}
+	public List<HoursWorkDTO> getHoursWorkList() {
+		return hoursWorkList;
+	}
+	public void setHoursWorkList(List<HoursWorkDTO> hoursWorkList) {
+		this.hoursWorkList = hoursWorkList;
+	}
+	public List<InternshipTypeDTO> getInternshipTypeList() {
+		return internshipTypeList;
+	}
+	public void setInternshipTypeList(List<InternshipTypeDTO> internshipTypeList) {
+		this.internshipTypeList = internshipTypeList;
 	}
 	
 }

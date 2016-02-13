@@ -14,13 +14,10 @@ import com.healthsciences.services.domain.model.PayType;
 import com.healthsciences.services.domain.model.State;
 import com.healthsciences.services.domain.repositories.criteria.InternshipListCriteria;
 import com.healthsciences.services.facade.dto.entities.AcademicPeriodDTO;
-import com.healthsciences.services.facade.dto.entities.AcademicPeriodListDTO;
 import com.healthsciences.services.facade.dto.entities.GetInternshipsListCriteriaDTO;
 import com.healthsciences.services.facade.dto.entities.HoursWorkDTO;
-import com.healthsciences.services.facade.dto.entities.HoursWorkListDTO;
 import com.healthsciences.services.facade.dto.entities.InternshipDetailsDTO;
 import com.healthsciences.services.facade.dto.entities.InternshipTypeDTO;
-import com.healthsciences.services.facade.dto.entities.InternshipTypeListDTO;
 import com.healthsciences.services.facade.dto.entities.InternshipsListDTO;
 import com.healthsciences.services.facade.dto.entities.PayTypeDTO;
 import com.healthsciences.services.facade.dto.entities.StateDTO;
@@ -49,15 +46,15 @@ public class InternshipsAssembler {
 		internshipDetails.setStateId(state);
 		internshipDetails.setStatus(internship.getRecordStatus());
 		
-		InternshipTypeListDTO internshipTypeListDTO = new InternshipTypeListDTO();
+		List<InternshipTypeDTO> internshipTypeListDTO = new ArrayList<InternshipTypeDTO>();
 		InternshipTypeList2InternrshipTypeListDTO(internship.getInternshipType(), internshipTypeListDTO);
 		internshipDetails.setInternshipTypeList(internshipTypeListDTO);
 		
-		AcademicPeriodListDTO academicPeriodListDTO = new AcademicPeriodListDTO();
+		List<AcademicPeriodDTO> academicPeriodListDTO = new ArrayList<AcademicPeriodDTO>();
 		AcademicPeriodsList2AcademicPeriodsListDTO(internship.getAcademicPeriods(), academicPeriodListDTO);
 		internshipDetails.setAcademicPeriodList(academicPeriodListDTO);
 		
-		HoursWorkListDTO hoursWorkListDTO = new HoursWorkListDTO();
+		List<HoursWorkDTO> hoursWorkListDTO = new ArrayList<HoursWorkDTO>();
 		HoursWorkListHoursWorkListDTO(internship.getHoursWork() ,hoursWorkListDTO);
 		internshipDetails.setHoursWorkList(hoursWorkListDTO);
 		
@@ -68,39 +65,33 @@ public class InternshipsAssembler {
 		
 	}
 	
-	public static void HoursWorkListHoursWorkListDTO(List<HoursWorkInternship> list, HoursWorkListDTO listDTO){
-		List<HoursWorkDTO> hoursWorkDTOs = new ArrayList<HoursWorkDTO>();
+	public static void HoursWorkListHoursWorkListDTO(List<HoursWorkInternship> list, List<HoursWorkDTO> listDTO){
 		for (HoursWorkInternship hoursWorkInternship : list) {
 			HoursWorkDTO temp = new HoursWorkDTO();
 			temp.setHoursID(hoursWorkInternship.getHoursWork().getHoursID());
 			temp.setTitle(hoursWorkInternship.getHoursWork().getTitle());
 			temp.setHours_week(hoursWorkInternship.getHoursWork().getHours_week());
 			temp.setTotalHours(hoursWorkInternship.getHoursWork().getTotal_hours());
-			hoursWorkDTOs.add(temp);
+			listDTO.add(temp);
 		}
-		listDTO.setHoursWorkList(hoursWorkDTOs);
 	}
 	
-	public static void AcademicPeriodsList2AcademicPeriodsListDTO(List<AcademicPeriodInternship> list, AcademicPeriodListDTO listDTO){
-		List<AcademicPeriodDTO> academicPeriodDTOs = new ArrayList<AcademicPeriodDTO>();
+	public static void AcademicPeriodsList2AcademicPeriodsListDTO(List<AcademicPeriodInternship> list, List<AcademicPeriodDTO> listDTO){
 		for (AcademicPeriodInternship academicPeriodInternship : list) {
 			AcademicPeriodDTO temp = new AcademicPeriodDTO();
 			temp.setId(academicPeriodInternship.getAcademicPeriod().getId());
 			temp.setTitle(academicPeriodInternship.getAcademicPeriod().getTitle());
-			academicPeriodDTOs.add(temp);
+			listDTO.add(temp);
 		}
-		listDTO.setAcademicPeriodList(academicPeriodDTOs);
 	}
 	
-	public static void InternshipTypeList2InternrshipTypeListDTO(List<InternshiptypeInternship> List, InternshipTypeListDTO listDTO){
-		List<InternshipTypeDTO> internshipTypeListDTO = new ArrayList<InternshipTypeDTO>();
+	public static void InternshipTypeList2InternrshipTypeListDTO(List<InternshiptypeInternship> List, List<InternshipTypeDTO> listDTO){
 		for (InternshiptypeInternship internshiptypeInternship : List) {
 			InternshipTypeDTO internshipTypeDTO = new InternshipTypeDTO();
 			internshipTypeDTO.setId(internshiptypeInternship.getInternshipType().getId());
 			internshipTypeDTO.setTitle(internshiptypeInternship.getInternshipType().getTitle());
-			internshipTypeListDTO.add(internshipTypeDTO);
+			listDTO.add(internshipTypeDTO);
 		}
-		listDTO.setInternshipTypeList(internshipTypeListDTO);
 	}
 	
 	
@@ -179,12 +170,5 @@ public class InternshipsAssembler {
 		
 	}
 	
-	public static void AcademicPeriodInternshipDTO2academicPeriodInternship(AcademicPeriodListDTO from, List<AcademicPeriodInternship> to, Integer internshipID){
-		
-		for (AcademicPeriodDTO i : from.getAcademicPeriodList()) {
-			AcademicPeriodInternship temp = new AcademicPeriodInternship();
-			
-			//temp.setInternship();
-		}
-	}
+
 }
