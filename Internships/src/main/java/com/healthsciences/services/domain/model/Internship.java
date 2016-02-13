@@ -2,18 +2,22 @@ package com.healthsciences.services.domain.model;
 
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name ="internship_details")
+@Table(name ="internship")
 public class Internship extends AbstractEntity<Integer>{
 	@Id
 	@GeneratedValue
@@ -35,16 +39,10 @@ public class Internship extends AbstractEntity<Integer>{
 	@Column(name="Personal_Email")
 	private String email;
 	
-	@Column(name="Internship_Type_ID")
-	private String internTypeID;
 	
 	@Column(name="Internship_Description")
 	private String internDesc;
 	
-	
-	@ManyToOne
-	@JoinColumn(name="Hours_ID", nullable=false)
-	private HoursWork hours_work;
 	
 	@Column(name="City")
 	private String city;
@@ -55,10 +53,7 @@ public class Internship extends AbstractEntity<Integer>{
 	@Column(name="Special_Skills")
 	private String special_Skills;
 	
-	@Column(name="Pay_Type")
-	private String pay_type;
-	
-	@Column(name="Pay_Amount")
+	@Column(name="PayAmount")
 	private String pay_Amount;
 	
 
@@ -70,6 +65,53 @@ public class Internship extends AbstractEntity<Integer>{
 	@JoinColumn(name="State_ID")
 	private State state;
 	
+	@ManyToOne
+	@JoinColumn(name="PayType_ID")
+	private PayType payType;
+	
+	public PayType getPayType() {
+		return payType;
+	}
+
+	public void setPayType(PayType payType) {
+		this.payType = payType;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "internship")
+	private List<AcademicPeriodInternship> academicPeriods;
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "internship")
+	private List<HoursWorkInternship> hoursWork;
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy = "internship")
+	private List<InternshiptypeInternship> internshipType;
+	
+	
+
+	public List<AcademicPeriodInternship> getAcademicPeriods() {
+		return academicPeriods;
+	}
+
+	public void setAcademicPeriods(List<AcademicPeriodInternship> academicPeriods) {
+		this.academicPeriods = academicPeriods;
+	}
+
+	public List<HoursWorkInternship> getHoursWork() {
+		return hoursWork;
+	}
+
+	public void setHoursWork(List<HoursWorkInternship> hoursWork) {
+		this.hoursWork = hoursWork;
+	}
+
+	public List<InternshiptypeInternship> getInternshipType() {
+		return internshipType;
+	}
+
+	public void setInternshipType(List<InternshiptypeInternship> internshipType) {
+		this.internshipType = internshipType;
+	}
+
 	@Column(name="Status")
 	private String recordStatus;
 	
@@ -105,13 +147,6 @@ public class Internship extends AbstractEntity<Integer>{
 		this.special_Skills = special_Skills;
 	}
 
-	public String getPay_type() {
-		return pay_type;
-	}
-
-	public void setPay_type(String pay_type) {
-		this.pay_type = pay_type;
-	}
 
 	public String getPay_Amount() {
 		return pay_Amount;
@@ -171,13 +206,7 @@ public class Internship extends AbstractEntity<Integer>{
 		this.email = email;
 	}
 
-	public String getInternTypeID() {
-		return internTypeID;
-	}
 
-	public void setInternTypeID(String internTypeID) {
-		this.internTypeID = internTypeID;
-	}
 
 	public String getInternDesc() {
 		return internDesc;
@@ -186,15 +215,6 @@ public class Internship extends AbstractEntity<Integer>{
 	public void setInternDesc(String internDesc) {
 		this.internDesc = internDesc;
 	}
-
-	public HoursWork getHours_work() {
-		return hours_work;
-	}
-
-	public void setHours_work(HoursWork hours_work) {
-		this.hours_work = hours_work;
-	}
-
 
 	public Integer getInternshipID() {
 		return internshipID;

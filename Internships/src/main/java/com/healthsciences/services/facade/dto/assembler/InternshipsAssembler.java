@@ -3,14 +3,26 @@ package com.healthsciences.services.facade.dto.assembler;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.healthsciences.services.domain.model.AcademicPeriod;
+import com.healthsciences.services.domain.model.AcademicPeriodInternship;
 import com.healthsciences.services.domain.model.HoursWork;
+import com.healthsciences.services.domain.model.HoursWorkInternship;
 import com.healthsciences.services.domain.model.Internship;
+import com.healthsciences.services.domain.model.InternshipType;
+import com.healthsciences.services.domain.model.InternshiptypeInternship;
+import com.healthsciences.services.domain.model.PayType;
 import com.healthsciences.services.domain.model.State;
 import com.healthsciences.services.domain.repositories.criteria.InternshipListCriteria;
+import com.healthsciences.services.facade.dto.entities.AcademicPeriodDTO;
+import com.healthsciences.services.facade.dto.entities.AcademicPeriodListDTO;
 import com.healthsciences.services.facade.dto.entities.GetInternshipsListCriteriaDTO;
 import com.healthsciences.services.facade.dto.entities.HoursWorkDTO;
+import com.healthsciences.services.facade.dto.entities.HoursWorkListDTO;
 import com.healthsciences.services.facade.dto.entities.InternshipDetailsDTO;
+import com.healthsciences.services.facade.dto.entities.InternshipTypeDTO;
+import com.healthsciences.services.facade.dto.entities.InternshipTypeListDTO;
 import com.healthsciences.services.facade.dto.entities.InternshipsListDTO;
+import com.healthsciences.services.facade.dto.entities.PayTypeDTO;
 import com.healthsciences.services.facade.dto.entities.StateDTO;
 
 public class InternshipsAssembler {
@@ -24,25 +36,74 @@ public class InternshipsAssembler {
 		internshipDetails.setContactPerson(internship.getContactPerson());
 		internshipDetails.setPhoneNumber(internship.getPhoneNumber());
 		internshipDetails.setEmail(internship.getEmail());
-		internshipDetails.setInternTypeID(internship.getInternTypeID());
 		internshipDetails.setInternDesc(internship.getInternDesc());
-		HoursWorkDTO hours_work = new HoursWorkDTO();
-		hours_work.setHoursID(internship.getHours_work().getHoursID());
-		hours_work.setHours_week(internship.getHours_work().getHours_week());
-		hours_work.setTitle(internship.getHours_work().getTitle());
-		hours_work.setTotalHours(internship.getHours_work().getTotal_hours());
-		internshipDetails.setHours_work(hours_work);
 		internshipDetails.setCity(internship.getCity());
 		internshipDetails.setZipcode(internship.getZipcode());
 		internshipDetails.setSpecialSkills(internship.getSpecial_Skills());
-		internshipDetails.setPaytype(internship.getPay_type());
 		internshipDetails.setPayamount(internship.getPay_Amount());
 		internshipDetails.setPostedDate(internship.getPosted_Date());
+		
 		StateDTO state = new StateDTO();
 		state.setStateid(internship.getState().getStateID());
 		state.setState_name(internship.getState().getName());
 		internshipDetails.setStateId(state);
+		internshipDetails.setStatus(internship.getRecordStatus());
+		
+		InternshipTypeListDTO internshipTypeListDTO = new InternshipTypeListDTO();
+		InternshipTypeList2InternrshipTypeListDTO(internship.getInternshipType(), internshipTypeListDTO);
+		internshipDetails.setInternshipTypeList(internshipTypeListDTO);
+		
+		AcademicPeriodListDTO academicPeriodListDTO = new AcademicPeriodListDTO();
+		AcademicPeriodsList2AcademicPeriodsListDTO(internship.getAcademicPeriods(), academicPeriodListDTO);
+		internshipDetails.setAcademicPeriodList(academicPeriodListDTO);
+		
+		HoursWorkListDTO hoursWorkListDTO = new HoursWorkListDTO();
+		HoursWorkListHoursWorkListDTO(internship.getHoursWork() ,hoursWorkListDTO);
+		internshipDetails.setHoursWorkList(hoursWorkListDTO);
+		
+		PayTypeDTO payTypeDTO = new PayTypeDTO();
+		payTypeDTO.setId(internship.getPayType().getId());
+		payTypeDTO.setTitle(internship.getPayType().getTitle());
+		internshipDetails.setPayType(payTypeDTO);
+		
 	}
+	
+	public static void HoursWorkListHoursWorkListDTO(List<HoursWorkInternship> list, HoursWorkListDTO listDTO){
+		List<HoursWorkDTO> hoursWorkDTOs = new ArrayList<HoursWorkDTO>();
+		for (HoursWorkInternship hoursWorkInternship : list) {
+			HoursWorkDTO temp = new HoursWorkDTO();
+			temp.setHoursID(hoursWorkInternship.getHoursWork().getHoursID());
+			temp.setTitle(hoursWorkInternship.getHoursWork().getTitle());
+			temp.setHours_week(hoursWorkInternship.getHoursWork().getHours_week());
+			temp.setTotalHours(hoursWorkInternship.getHoursWork().getTotal_hours());
+			hoursWorkDTOs.add(temp);
+		}
+		listDTO.setHoursWorkList(hoursWorkDTOs);
+	}
+	
+	public static void AcademicPeriodsList2AcademicPeriodsListDTO(List<AcademicPeriodInternship> list, AcademicPeriodListDTO listDTO){
+		List<AcademicPeriodDTO> academicPeriodDTOs = new ArrayList<AcademicPeriodDTO>();
+		for (AcademicPeriodInternship academicPeriodInternship : list) {
+			AcademicPeriodDTO temp = new AcademicPeriodDTO();
+			temp.setId(academicPeriodInternship.getAcademicPeriod().getId());
+			temp.setTitle(academicPeriodInternship.getAcademicPeriod().getTitle());
+			academicPeriodDTOs.add(temp);
+		}
+		listDTO.setAcademicPeriodList(academicPeriodDTOs);
+	}
+	
+	public static void InternshipTypeList2InternrshipTypeListDTO(List<InternshiptypeInternship> List, InternshipTypeListDTO listDTO){
+		List<InternshipTypeDTO> internshipTypeListDTO = new ArrayList<InternshipTypeDTO>();
+		for (InternshiptypeInternship internshiptypeInternship : List) {
+			InternshipTypeDTO internshipTypeDTO = new InternshipTypeDTO();
+			internshipTypeDTO.setId(internshiptypeInternship.getInternshipType().getId());
+			internshipTypeDTO.setTitle(internshiptypeInternship.getInternshipType().getTitle());
+			internshipTypeListDTO.add(internshipTypeDTO);
+		}
+		listDTO.setInternshipTypeList(internshipTypeListDTO);
+	}
+	
+	
 	public static void getIntenshipListCriteria2IntershipListCriteria(GetInternshipsListCriteriaDTO getCriteria, InternshipListCriteria listCriteria){
 		listCriteria.setStateID(getCriteria.getStateID());
 		listCriteria.setRecordType(getCriteria.getRecordType());
@@ -94,33 +155,36 @@ public class InternshipsAssembler {
 		listDTO.setInternshipList(intenshipListDTO);
 	}
 	public static void InternshipDetailsDTO2InternshipDetails(InternshipDetailsDTO detailsDTO, Internship internship){
-		internship.setInternshipID(detailsDTO.getInternshipID());
 		internship.setOrganizationName(detailsDTO.getOrganizationName());
 		internship.setURL(detailsDTO.getURL());
 		internship.setContactPerson(detailsDTO.getContactPerson());
 		internship.setPhoneNumber(detailsDTO.getPhoneNumber());
 		internship.setEmail(detailsDTO.getEmail());
-		internship.setInternTypeID(detailsDTO.getInternTypeID());
 		internship.setInternDesc(detailsDTO.getInternDesc());
 		internship.setCity(detailsDTO.getCity());
 		internship.setZipcode(detailsDTO.getZipcode());
 		internship.setSpecial_Skills(detailsDTO.getSpecialSkills());
-		internship.setPay_type(detailsDTO.getPaytype());
 		internship.setPay_Amount(detailsDTO.getPayamount());
 		internship.setPosted_Date(detailsDTO.getPostedDate());
 		internship.setRecordStatus(detailsDTO.getStatus());
-	
+
 		State state = new State();
 		state.setStateID(detailsDTO.getStateId().getStateid());
 		state.setName(detailsDTO.getStateId().getState_name());
 		internship.setState(state);
 		
-		HoursWork hoursWork = new HoursWork();
-		hoursWork.setHoursID(detailsDTO.getHours_work().getHoursID());
-		hoursWork.setHours_week(detailsDTO.getHours_work().getHours_week());
-		hoursWork.setTitle(detailsDTO.getHours_work().getTitle());
-		hoursWork.setTotal_hours(detailsDTO.getHours_work().getTotalHours());
-		internship.setHours_work(hoursWork);			
+		PayType payType = new PayType();
+		payType.setId(detailsDTO.getPayType().getId());
+		internship.setPayType(payType);
 		
+	}
+	
+	public static void AcademicPeriodInternshipDTO2academicPeriodInternship(AcademicPeriodListDTO from, List<AcademicPeriodInternship> to, Integer internshipID){
+		
+		for (AcademicPeriodDTO i : from.getAcademicPeriodList()) {
+			AcademicPeriodInternship temp = new AcademicPeriodInternship();
+			
+			//temp.setInternship();
+		}
 	}
 }

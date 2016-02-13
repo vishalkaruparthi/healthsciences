@@ -15,18 +15,37 @@ public class InternshipDetailsDTO {
 	private String contactPerson;
 	private String phoneNumber;
 	private String email;
-	private String internTypeID;
 	private String internDesc;
-	private HoursWorkDTO hours_work;
 	private String city;
 	private String zipcode;
 	private String specialSkills;
-	private String paytype;
 	private String payamount;
 	private LocalDateTime postedDate;
 	private StateDTO stateId;
 	private String status;
+	private InternshipTypeListDTO internshipTypeList;
+	private AcademicPeriodListDTO academicPeriodList;
+	private HoursWorkListDTO hoursWorkList;
+	private PayTypeDTO payType;
 	
+	public AcademicPeriodListDTO getAcademicPeriodList() {
+		return academicPeriodList;
+	}
+	public void setAcademicPeriodList(AcademicPeriodListDTO academicPeriodList) {
+		this.academicPeriodList = academicPeriodList;
+	}
+	public HoursWorkListDTO getHoursWorkList() {
+		return hoursWorkList;
+	}
+	public void setHoursWorkList(HoursWorkListDTO hoursWorkList) {
+		this.hoursWorkList = hoursWorkList;
+	}
+	public InternshipTypeListDTO getInternshipTypeList() {
+		return internshipTypeList;
+	}
+	public void setInternshipTypeList(InternshipTypeListDTO internshipTypeList) {
+		this.internshipTypeList = internshipTypeList;
+	}
 	public String getCity() {
 		return city;
 	}
@@ -44,12 +63,6 @@ public class InternshipDetailsDTO {
 	}
 	public void setSpecialSkills(String specialSkills) {
 		this.specialSkills = specialSkills;
-	}
-	public String getPaytype() {
-		return paytype;
-	}
-	public void setPaytype(String paytype) {
-		this.paytype = paytype;
 	}
 	public String getPayamount() {
 		return payamount;
@@ -93,23 +106,11 @@ public class InternshipDetailsDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getInternTypeID() {
-		return internTypeID;
-	}
-	public void setInternTypeID(String internTypeID) {
-		this.internTypeID = internTypeID;
-	}
 	public String getInternDesc() {
 		return internDesc;
 	}
 	public void setInternDesc(String internDesc) {
 		this.internDesc = internDesc;
-	}
-	public HoursWorkDTO getHours_work() {
-		return hours_work;
-	}
-	public void setHours_work(HoursWorkDTO hours_work) {
-		this.hours_work = hours_work;
 	}
 	public Integer getInternshipID() {
 		return internshipID;
@@ -128,6 +129,12 @@ public class InternshipDetailsDTO {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public PayTypeDTO getPayType() {
+		return payType;
+	}
+	public void setPayType(PayTypeDTO payType) {
+		this.payType = payType;
 	}
 	
 }

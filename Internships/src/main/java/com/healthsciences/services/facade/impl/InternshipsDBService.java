@@ -1,5 +1,6 @@
 package com.healthsciences.services.facade.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.aop.IntroductionInterceptor;
@@ -8,10 +9,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.util.concurrent.Service.State;
+import com.healthsciences.services.domain.model.AcademicPeriod;
+import com.healthsciences.services.domain.model.AcademicPeriodInternship;
 import com.healthsciences.services.domain.model.Internship;
+import com.healthsciences.services.domain.repositories.IAcadPeriodInternRepository;
+import com.healthsciences.services.domain.repositories.IAcadPeriodRepository;
 import com.healthsciences.services.domain.repositories.IInternshipRepository;
 import com.healthsciences.services.domain.repositories.criteria.InternshipListCriteria;
 import com.healthsciences.services.facade.dto.assembler.InternshipsAssembler;
+import com.healthsciences.services.facade.dto.entities.AcademicPeriodDTO;
 import com.healthsciences.services.facade.dto.entities.GetInternshipsListCriteriaDTO;
 import com.healthsciences.services.facade.dto.entities.InternshipDetailsDTO;
 import com.healthsciences.services.facade.dto.entities.InternshipsListDTO;
@@ -27,6 +33,8 @@ public class InternshipsDBService implements IInternShipsService{
 
 	@Autowired
 	IInternshipRepository internshipRepo;
+	IAcadPeriodInternRepository acadPeriodInternRepo;
+	IAcadPeriodRepository acadPeriodRepo;
 	
 	public InternshipDetailsDTO getInternshipDetails(Integer internshipid) throws FacadeEntityNotFoundExpection, FacadeUnknownException{
 		try {
@@ -40,7 +48,6 @@ public class InternshipsDBService implements IInternShipsService{
 		} catch (Exception e) {
 			throw new FacadeUnknownException(e.getMessage());
 		}
-		
 	}
 
 	public InternshipsListDTO getInternshipList (
@@ -61,6 +68,14 @@ public class InternshipsDBService implements IInternShipsService{
 			internshipRepo.save(internship);
 			internship.getInternshipID();
 			status = internship.getInternshipID().toString();
+			
+			for (AcademicPeriodDTO current : setDetails.getAcademicPeriodList().getAcademicPeriodList()) {
+				AcademicPeriodInternship temp = new AcademicPeriodInternship();
+				temp.setAcademicPeriod(acadPeriodRepo.get(current.getId()));
+				temp.setInternship(internshipRepo.get(internship.getInternshipID()));
+				acadPeriodInternRepo.save(temp);
+			}
+			
 			return status;
 		} catch (Exception e) {
 			throw new FacadeConstraintException(e.getMessage());

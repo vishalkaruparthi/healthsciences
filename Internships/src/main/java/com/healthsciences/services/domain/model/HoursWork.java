@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="hours_work")
+@Table(name="hourswork")
 public class HoursWork extends AbstractEntity<Integer>{
 	@Id
 	@GeneratedValue
