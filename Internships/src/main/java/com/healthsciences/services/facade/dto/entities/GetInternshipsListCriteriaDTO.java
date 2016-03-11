@@ -1,5 +1,11 @@
 package com.healthsciences.services.facade.dto.entities;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.SortedSet;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="listcriteria")
@@ -18,8 +24,19 @@ public class GetInternshipsListCriteriaDTO {
 	 *  
 	 */
 	private Integer sortCriteria;
-	private String recordType;
 	
+	private List<Integer> hoursWork;
+	
+	private List<Integer> academicPeriod;
+	
+	
+	
+
+	private List<Integer> internType;
+
+	private Integer payType;
+
+
 	public Integer getStateID() {
 		return stateID;
 	}
@@ -28,22 +45,78 @@ public class GetInternshipsListCriteriaDTO {
 		this.stateID = stateID;
 	}
 
+
+
+
 	public Integer getSortCriteria() {
 		return sortCriteria;
 	}
+
+
+
 
 	public void setSortCriteria(Integer sortCriteria) {
 		this.sortCriteria = sortCriteria;
 	}
 
-	public String getRecordType() {
-		return recordType;
+
+
+
+	public List<Integer> getHoursWork() {
+		return hoursWork;
 	}
 
-	public void setRecordType(String recordType) {
-		this.recordType = recordType;
+
+
+
+	public void setHoursWork(List<Integer> hoursWork) {
+		this.hoursWork = hoursWork;
 	}
 
+
+
+
+	public List<Integer> getAcademicPeriod() {
+		return academicPeriod;
+	}
+
+
+
+
+	public void setAcademicPeriod(List<Integer> academicPeriod) {
+		this.academicPeriod = academicPeriod;
+	}
+
+
+
+
+	public List<Integer> getInternType() {
+		return internType;
+	}
+
+
+
+
+	public void setInternType(List<Integer> internType) {
+		this.internType = internType;
+	}
+
+
+
+
+	public Integer getPayType() {
+		return payType;
+	}
+
+
+
+
+	public void setPayType(Integer payType) {
+		this.payType = payType;
+	}
+	
+	
+	
 
 	
 }

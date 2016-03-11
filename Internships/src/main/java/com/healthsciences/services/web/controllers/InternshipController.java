@@ -30,13 +30,13 @@ public class InternshipController {
 	@Autowired
 	IInternShipsService internshipService;
 	
-//	@RequestMapping(value="/list", method=RequestMethod.POST)
-//	@ResponseBody
-//	public ResponseEntity<InternshipsListDTO> getInternships(@RequestBody GetInternshipsListCriteriaDTO getCriteria){
-//			InternshipsListDTO list = internshipService.getInternshipList(getCriteria);
-//			return new ResponseEntity<InternshipsListDTO>(list, HttpStatus.OK);
-//	}
-//	
+	@RequestMapping(value="/list", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<InternshipsListDTO> getInternships(@RequestBody GetInternshipsListCriteriaDTO getCriteria){
+			InternshipsListDTO list = internshipService.getInternshipList(getCriteria);
+			return new ResponseEntity<InternshipsListDTO>(list, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/details/{internshipID}", method=RequestMethod.POST)
 	@ResponseBody
 	public Object getInternshipDetails(@PathVariable Integer internshipID){
@@ -91,12 +91,12 @@ public class InternshipController {
 			return resp;
 		}
 	}
-//	
-//	@RequestMapping(value="/approve/{internshipID}", method = RequestMethod.GET)
-//	@ResponseBody
-//	public boolean approveInternship(@PathVariable Integer internshipID){
-//		return internshipService.approveInternship(internshipID);
-//	}
+	
+	@RequestMapping(value="/approve/{internshipID}", method = RequestMethod.GET)
+	@ResponseBody
+	public boolean approveInternship(@PathVariable Integer internshipID){
+		return internshipService.approveInternship(internshipID);
+	}
 	
 	
 }

@@ -1,6 +1,7 @@
 package com.healthsciences.services.facade.dto.assembler;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.healthsciences.services.domain.model.AcademicPeriod;
@@ -97,7 +98,11 @@ public class InternshipsAssembler {
 	
 	public static void getIntenshipListCriteria2IntershipListCriteria(GetInternshipsListCriteriaDTO getCriteria, InternshipListCriteria listCriteria){
 		listCriteria.setStateID(getCriteria.getStateID());
-		listCriteria.setRecordType(getCriteria.getRecordType());
+		listCriteria.setAcademicPeriod(getCriteria.getAcademicPeriod());
+		listCriteria.setHoursWork(getCriteria.getHoursWork());
+		listCriteria.setInternType(getCriteria.getInternType());
+		listCriteria.setPayType(getCriteria.getPayType());
+		listCriteria.setSortCriteria(getCriteria.getSortCriteria());
 		switch (getCriteria.getSortCriteria()) {
 			case 10:
 				listCriteria.setOrderField("posted_Date");
@@ -132,17 +137,35 @@ public class InternshipsAssembler {
 			default:
 				listCriteria.setOrderField("posted_Date");
 				break;
-			}
+		}
 		
 	}
 	
-	public static void InternshipList2InternshipListDTO(List<Internship> intenshiplist, InternshipsListDTO listDTO){
+	public static void InternshipList2InternshipListDTO(List<Object> intenshiplist, InternshipsListDTO listDTO){
 		List<InternshipDetailsDTO> intenshipListDTO =  new ArrayList<InternshipDetailsDTO>();
-		for (Internship internship : intenshiplist) {
-			InternshipDetailsDTO internshipDetails = new InternshipDetailsDTO();
-			InternshipsAssembler.Internship2InternshipdetailsDTO(internship, internshipDetails);
-			intenshipListDTO.add(internshipDetails);
+		System.out.println("LIST::::"+intenshiplist.size());
+		Iterator<Object> pairsIt = intenshiplist.iterator();
+		List<Integer> internIDs = new ArrayList<Integer>();
+		while(pairsIt.hasNext()){
+		    Object[] pair = (Object[]) pairsIt.next();
+		    System.out.println(pair[0]);
+		    Internship internship = (Internship) pair[0];
+		    InternshipDetailsDTO internshipDetails = new InternshipDetailsDTO();
+		    InternshipsAssembler.Internship2InternshipdetailsDTO(internship, internshipDetails);
+		    
+		    if(!internIDs.contains(internshipDetails.getInternshipID())){
+		    	internIDs.add(internshipDetails.getInternshipID());
+		    	intenshipListDTO.add(internshipDetails);
+		    }
+		 
 		}
+//		for (Object internship : intenshiplist) {
+//			InternshipDetailsDTO internshipDetails = new InternshipDetailsDTO();
+//			System.out.println(internship.getClass());
+//			System.out.println(internship);
+//			InternshipsAssembler.Internship2InternshipdetailsDTO(internship, internshipDetails);
+//			intenshipListDTO.add(internshipDetails);
+//		}
 		listDTO.setInternshipList(intenshipListDTO);
 	}
 	public static void InternshipDetailsDTO2InternshipDetails(InternshipDetailsDTO detailsDTO, Internship internship){

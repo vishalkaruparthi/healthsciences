@@ -73,7 +73,7 @@ public class InternshipsDBService implements IInternShipsService{
 		InternshipListCriteria listCriteria = new InternshipListCriteria();
 		InternshipsListDTO listDTO = new InternshipsListDTO();
 		InternshipsAssembler.getIntenshipListCriteria2IntershipListCriteria(getCriteria, listCriteria);
-		List<Internship> internships = (List<Internship>) internshipRepo.getInternshipList(listCriteria);
+		List<Object> internships = internshipRepo.getInternshipList(listCriteria);
 		InternshipsAssembler.InternshipList2InternshipListDTO(internships, listDTO);
 		return listDTO;
 	}

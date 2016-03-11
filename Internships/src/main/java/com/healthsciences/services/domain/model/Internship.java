@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -78,12 +80,15 @@ public class Internship extends AbstractEntity<Integer>{
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "internship")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<AcademicPeriodInternship> academicPeriods;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "internship")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<HoursWorkInternship> hoursWork;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy = "internship")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<InternshiptypeInternship> internshipType;
 	
 	
