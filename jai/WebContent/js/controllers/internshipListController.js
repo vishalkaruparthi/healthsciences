@@ -27,14 +27,16 @@ internshipModule.controller('InternshipListController', ['$scope', 'intenshipsBy
             var internTypes = self.arrayNegations(self.allInternTypes, $scope.internshipTypesSelected);
             var scheduleTypes = self.arrayNegations(self.allscheduleTypes, $scope.scheduleTypesSelected);
             var academicPeriodsTypes = self.arrayNegations(self.allacademicPeriods, $scope.academicPeriodsSelected);
+            var stateID = $scope.state.selected;
+            var payTypeID = $scope.payTypesSelction.selected;
             this.resetAllIds();
             console.log("internship types not selected"+internTypes);
             
             
             var level2 = {
-                stateID: 43,
+                stateID: stateID,
                 sortCriteria:11,
-                payType:2,
+                payType:payTypeID,
                 hoursWork:scheduleTypes,
                 academicPeriod:academicPeriodsTypes,
                 internType:internTypes
@@ -60,17 +62,26 @@ internshipModule.controller('InternshipListController', ['$scope', 'intenshipsBy
         
         $scope.internshipList = [];
         
-        $scope.cities = [{name:"Texas", id:43},{name:"Others", id:-1}];
-        $scope.citiesSelected = [43];
-        $scope.toggle = function (item) {
-            var idx = $scope.citiesSelected.indexOf(item);
-            if (idx > -1) $scope.citiesSelected.splice(idx, 1);
-            else $scope.citiesSelected.push(item);
+        $scope.cities = [{name:"Texas", id:43},{name:"All", id:-1}];
+        $scope.state = {
+            selected : 43
+        };
+        
+        $scope.stateOnClick = function(){
             self.getList();
         };
-        $scope.exists = function (item) {
-            return $scope.citiesSelected.indexOf(item) > -1;
-        };
+
+        
+//        $scope.citiesSelected = [43];
+//        $scope.toggle = function (item) {
+//            var idx = $scope.citiesSelected.indexOf(item);
+//            if (idx > -1) $scope.citiesSelected.splice(idx, 1);
+//            else $scope.citiesSelected.push(item);
+//            self.getList();
+//        };
+//        $scope.exists = function (item) {
+//            return $scope.citiesSelected.indexOf(item) > -1;
+//        };
         
         
         $scope.internshipTypes = [{name:"Public Health/Health Promotion", id:1},
@@ -120,6 +131,20 @@ internshipModule.controller('InternshipListController', ['$scope', 'intenshipsBy
             return $scope.academicPeriodsSelected.indexOf(item) > -1;
         };
         
+        
+        $scope.payTypes = [{name:"No", id:1},
+                          {name:"Stipend", id:2},
+                          {name:"Wage", id:3},
+                          {name:"To be determined", id:4}];
+        
+        $scope.payTypesSelction = {
+            selected:2
+        }
+        
+        $scope.payTypeSelected = function(){
+            console.log($scope.payTypesSelction.selected);
+            self.getList();
+        }
         
     }
 ]);

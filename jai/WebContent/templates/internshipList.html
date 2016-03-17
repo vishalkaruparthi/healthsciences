@@ -7,11 +7,10 @@
 <div class="nav"> 
     <div class="col s12 m4 l3">
         <div>
-            <label for="sortByState">Sort By State </label>	
+            <label for="sortByState">State </label>	
             <div ng-repeat="city in cities">
                 <div class="input-field col s3" style= "margin-left:10px;margin-top:-10px;" >
-                <input type="checkbox" id={{city.id+city.name}} class="filled-in" ng-checked="exists(city.id)"
-                       ng-click="toggle(city.id)"/>
+                <input type="radio" id={{city.id+city.name}} name="stateradio" class="with-gap" value={{city.id}} ng-click="stateOnClick()" ng-model="state.selected"/>
                 <label for={{city.id+city.name}} id="fontSize10">{{city.name}}</label>
                 </div> <br>
             </div>
@@ -49,6 +48,16 @@
                     <label for={{"academicPeriods"+academicPeriod.id}} id="fontSize10">{{academicPeriod.name}}</label>
                 </div> <br>
             </div>    
+        </div>
+        <div>
+            <label for="sortByState">Pay type </label>	
+            <div ng-repeat="payType in payTypes">
+                <div class="input-field col s3" style= "margin-left:10px;margin-top:-10px;" >
+                <input type="radio" id={{"payType"+payType.id}} name="payTypeRadio" class="with-gap" value={{payType.id}} ng-click="payTypeSelected()" ng-model="payTypesSelction.selected"/>
+                <label for={{"payType"+payType.id}} id="fontSize10">{{payType.name}}</label>
+                </div> <br>
+            </div>
+            
         </div>
 </div>
 <div id="section">
