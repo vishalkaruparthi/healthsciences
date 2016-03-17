@@ -20,7 +20,6 @@ public class GetInternshipsListCriteriaDTO {
 	 * 
 	 * 30 organizationName desc
 	 * 31 organizationName asc
-	 * 
 	 *  
 	 */
 	private Integer sortCriteria;
@@ -29,13 +28,9 @@ public class GetInternshipsListCriteriaDTO {
 	
 	private List<Integer> academicPeriod;
 	
-	
-	
-
 	private List<Integer> internType;
 
 	private Integer payType;
-
 
 	public Integer getStateID() {
 		return stateID;

@@ -24,6 +24,7 @@ import com.healthsciences.services.facade.dto.entities.InternshipsListDTO;
 public class InternshipRepository extends BaseRepository<Internship, InternshipListCriteria> implements IInternshipRepository {
 	
 	
+	@SuppressWarnings("unchecked")
 	public List<Object> getInternshipList(InternshipListCriteria listCriteria){
 		/*
 		 * 10 posted_Date desc
@@ -62,22 +63,46 @@ public class InternshipRepository extends BaseRepository<Internship, InternshipL
 				break;
 		}
 		
-		@SuppressWarnings("unchecked")
-		javax.persistence.Query query = getEntityManager().createQuery("from Internship internship"
-				+ " join internship.internshipType internshiptype "
-				+ " join internship.hoursWork hoursWork"
-				+ " join internship.academicPeriods academicPeriods"
-				+ " where internshiptype.internshipType.id not in (:types)"
-				+ " and hoursWork.hoursWork.hoursID not in (:hoursWorks)"
-				+ " and academicPeriods.academicPeriod.id not in (:academicPeriods)"
-				+ " and internship.payType.id = :payTypeID"
-				+ " order by internship."+orderByQuery
-				);
+		
+		javax.persistence.Query query;
+		if(listCriteria.getStateID() == -1){
+			query = getEntityManager().createQuery("from Internship internship"
+					+ " join internship.internshipType internshiptype "
+					+ " join internship.hoursWork hoursWork"
+					+ " join internship.academicPeriods academicPeriods"
+					+ " where internshiptype.internshipType.id not in (:types)"
+					+ " and hoursWork.hoursWork.hoursID not in (:hoursWorks)"
+					+ " and academicPeriods.academicPeriod.id not in (:academicPeriods)"
+					+ " and internship.payType.id = :payTypeID"
+					+ " order by internship."+orderByQuery
+					);
+		}else{
+			query = getEntityManager().createQuery("from Internship internship"
+					+ " join internship.internshipType internshiptype "
+					+ " join internship.hoursWork hoursWork"
+					+ " join internship.academicPeriods academicPeriods"
+					+ " where internshiptype.internshipType.id not in (:types)"
+					+ " and hoursWork.hoursWork.hoursID not in (:hoursWorks)"
+					+ " and academicPeriods.academicPeriod.id not in (:academicPeriods)"
+					+ " and internship.payType.id = :payTypeID"
+					+ " and internship.state.stateID = :stateID"
+					+ " order by internship."+orderByQuery
+					);
+		}
 		
 		
-		List<Object> internshipsList = query.setParameter("types", listCriteria.getInternType()).setParameter("hoursWorks", listCriteria.getHoursWork())
-				.setParameter("academicPeriods", listCriteria.getAcademicPeriod()).setParameter("payTypeID", listCriteria.getPayType())
-				.getResultList();
+		
+		List<Object> internshipsList;
+		if(listCriteria.getStateID() == -1){
+			internshipsList = query.setParameter("types", listCriteria.getInternType()).setParameter("hoursWorks", listCriteria.getHoursWork())
+					.setParameter("academicPeriods", listCriteria.getAcademicPeriod()).setParameter("payTypeID", listCriteria.getPayType())
+					.getResultList();
+		}else{
+			internshipsList = query.setParameter("types", listCriteria.getInternType()).setParameter("hoursWorks", listCriteria.getHoursWork())
+					.setParameter("academicPeriods", listCriteria.getAcademicPeriod()).setParameter("payTypeID", listCriteria.getPayType()).setParameter("stateID", listCriteria.getStateID())
+					.getResultList();
+		}
+		
 		
 		
 		return internshipsList;

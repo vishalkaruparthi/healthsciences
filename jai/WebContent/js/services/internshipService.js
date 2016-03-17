@@ -38,9 +38,15 @@ internshipModule.factory('stateList', ['httpcall', '$q',function(httpcall, $q){
     var promise = deferred.promise;
     return promise;
 }]);
+
+
 internshipModule.factory('intenshipsByState', ['httpcall', '$q', function(httpcall, $q){
     var internships = [];
     var getInternshipsByState = function(data){
+        
+        console.log("getInternshipsByState "+JSON.stringify(data));
+        
+        
         var deferred = $q.defer();
         var successcallback = function(response){
             console.log(response.data);

@@ -1,49 +1,93 @@
-<div class="row">
-    <div class="container">
-        <div class="col s3">
-            <a href="" class="collection-item" value=1 ng-click="ilc.statesShow(1)">state</a>
-        </div>
-        <div class="col s9" ng-show="ilc.currentDisplay == 1">
-            <div class="collection">
-                <a href="" class="collection-item" ng-repeat="state in ilc.stateList" value={{state.stateid}} ng-click="ilc.stateOnClick(state.stateid)">{{state.state_name}}</a>
-            </div>
-        </div>
-        <div class="col s9" ng-show="ilc.currentDisplay == 2">
-            <div class="collection">
-                <ul class="collection">
-                    <li class="collection-item avatar" ng-repeat="internships in ilc.internhsipsByState">
-                        <span class="title blue-text text-darken-2" > Internship type and Organization</span>
+<div>
 
-                        <p><span class="blue-text text-darken-2" style="font-size: 12px">Organization Name:</span>
-                            <span style="font-size: 12px">{{internships.organizationName}}</span> <br>
-                            <span class="blue-text text-darken-2" style="font-size: 12px">Internship Type: </span>
-                            <span style="font-size: 12px">{{internships.internTypeID}}</span> <br>
-                            <span class="blue-text text-darken-2" style="font-size: 12px">Description: </span>
-                            <span style="font-size: 12px">{{internships.internDesc}}</span> <br>
-                            <span class="blue-text text-darken-2" style="font-size: 12px">Duration: </span>
-                            <span style="font-size: 12px">{{internships.internDesc}} </span>
-                            <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px"> Pay: </span>
-                            <span style="font-size: 12px"> ${{internships.payamount}} per hour</span>
-                            <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px"> URL: </span>
-                            <a target="_blank" style="font-size: 12px" href=http://{{internships.url}}> {{internships.url}}</a>
-                        </p>
-                        <span class=" title blue-text text-darken-2"> Contact Person Details</span>
-                        <p>
-                            <span class="blue-text text-darken-2" style="font-size: 12px">Name:</span>
-                            <span style="font-size: 12px">{{internships.contactPerson}} </span>
-                            <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px">Phone:</span>
-                            <span style="font-size: 12px">{{internships.phoneNumber}}</span>
-                            <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px">Email:</span>
-                            <span style="font-size: 12px">{{internships.email}}</span>
-                        </p>
-                        <p>
-                            <span style="font-size: 12px">{{internships.city}}, {{internships.stateId.state_name}} - {{internships.zipcode}}</span>
-                            <span class="blue-text text-darken-2" style="align:right;font-size:12px">Date Posted:</span>
-                            <span style="font-size: 12px">{{internships.postedDate}}</span>
-                        </p>
-                    </li>
-                </ul>
+<div id="header">
+    <h1>Internships List</h1>
+</div>
+
+<div class="nav"> 
+    <div class="col s12 m4 l3">
+        <div>
+            <label for="sortByState">Sort By State </label>	
+            <div ng-repeat="city in cities">
+                <div class="input-field col s3" style= "margin-left:10px;margin-top:-10px;" >
+                <input type="checkbox" id={{city.id+city.name}} class="filled-in" ng-checked="exists(city.id)"
+                       ng-click="toggle(city.id)"/>
+                <label for={{city.id+city.name}} id="fontSize10">{{city.name}}</label>
+                </div> <br>
             </div>
+            
+        </div>
+        <div>
+            <label for="typeOfInternship">Type of Internship </label>
+            <div ng-repeat="internType in internshipTypes">
+                <div class="input-field col s3" style="margin-left:10px; margin-top:-10px;" >
+                    <input type="checkbox" class="filled-in" id={{"internshipType"+internType.id}}
+                           ng-checked="existsIntershipTypes(internType.id)" ng-click="toggleIntershipTypes(internType.id)"/>
+                    <label for={{"internshipType"+internType.id}} id="fontSize10">{{internType.name}}</label>
+                </div> <br>
+            </div>
+        </div>    
+        
+        
+        <div>
+            <label for="Schedule">Schedule</label>
+            <div ng-repeat="schedule in scheduleTypes">
+                <div class="input-field col s3" style="margin-left:10px; margin-top:-10px;" >
+                    <input type="checkbox" class="filled-in" id={{"scheduleTypes"+schedule.id}}
+                           ng-checked="existsScheduleTypes(schedule.id)" ng-click="toggleScheduleTypes(schedule.id)"/>
+                    <label for={{"scheduleTypes"+schedule.id}} id="fontSize10">{{schedule.name}}</label>
+                </div> <br>
+            </div>    
+        </div>
+        
+        <div>
+            <label for="academicPeriod">Academic Period</label>
+            <div ng-repeat="academicPeriod in academicPeriods">
+                <div class="input-field col s3" style="margin-left:10px; margin-top:-10px;" >
+                    <input type="checkbox" class="filled-in" id={{"academicPeriods"+academicPeriod.id}}
+                           ng-checked="existsacademicPeriods(academicPeriod.id)" ng-click="toggleacademicPeriods(academicPeriod.id)"/>
+                    <label for={{"academicPeriods"+academicPeriod.id}} id="fontSize10">{{academicPeriod.name}}</label>
+                </div> <br>
+            </div>    
+        </div>
+</div>
+<div id="section">
+    <div class="col s12 m8 l9">
+        <div class="collection">
+            <ul class="collection">
+                <li class="collection-item avatar" ng-repeat="internships in internshipList">
+                    <span class="title blue-text text-darken-2" > Internship type and Organization</span>
+
+                    <p><span class="blue-text text-darken-2" style="font-size: 12px">Organization Name:</span>
+                        <span style="font-size: 12px">{{internships.organizationName}}</span> <br>
+                        <span class="blue-text text-darken-2" style="font-size: 12px">Internship Type: </span>
+                        <span style="font-size: 12px">{{internships.internTypeID}}</span> <br>
+                        <span class="blue-text text-darken-2" style="font-size: 12px">Description: </span>
+                        <span style="font-size: 12px">{{internships.internDesc}}</span> <br>
+                        <span class="blue-text text-darken-2" style="font-size: 12px">Duration: </span>
+                        <span style="font-size: 12px">{{internships.internDesc}} </span>
+                        <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px"> Pay: </span>
+                        <span style="font-size: 12px"> ${{internships.payamount}} per hour</span>
+                        <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px"> URL: </span>
+                        <a target="_blank" style="font-size: 12px" href=http://{{internships.url}}> {{internships.url}}</a>
+                    </p>
+                    <span class=" title blue-text text-darken-2"> Contact Person Details</span>
+                    <p>
+                        <span class="blue-text text-darken-2" style="font-size: 12px">Name:</span>
+                        <span style="font-size: 12px">{{internships.contactPerson}} </span>
+                        <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px">Phone:</span>
+                        <span style="font-size: 12px">{{internships.phoneNumber}}</span>
+                        <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px">Email:</span>
+                        <span style="font-size: 12px">{{internships.email}}</span>
+                    </p>
+                    <p>
+                        <span style="font-size: 12px">{{internships.city}}, {{internships.stateId.state_name}} - {{internships.zipcode}}</span>
+                        <span class="blue-text text-darken-2" style="align:right;font-size:12px">Date Posted:</span>
+                        <span style="font-size: 12px">{{internships.postedDate}}</span>
+                    </p>
+                </li>
+            </ul>
         </div>
     </div>
+</div> 
 </div>

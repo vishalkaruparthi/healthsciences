@@ -8,8 +8,7 @@ var internshipModule = angular.module('internshipModule', ['ngRoute']).
         });
         $routeProvider.otherwise({
             templateUrl : 'templates/internshipList.html',
-            controller : 'InternshipListController',
-            controllerAs : 'ilc'
-        })
+            controller : 'InternshipListController'
+        });
     }
 ])
