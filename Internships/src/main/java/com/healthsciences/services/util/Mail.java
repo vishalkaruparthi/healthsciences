@@ -40,13 +40,13 @@ public class Mail {
     			message.setSubject("Approval request");
                 message.setText("Dear admin, Please find below the details of the internship submitted."
                     + "\n\n Organization Name: " + details.getOrganizationName() +"\n\n"
-                    + "URL: "+ details.getURL() +"\n\n"
+                    + "URL: "+ details.getUrl() +"\n\n"
                     + "Contact Person: "+ details.getContactPerson() + "\n\n"
                     + "Email: "+ details.getEmail() +"\n\n"
                     + "Phone: "+ details.getPhoneNumber() +"\n\n"
                     + "ID "+status);
                 message.setContent("<li>Organization Name : "+details.getOrganizationName()+"</li> <br>"+
-                		"<li>URL : "+details.getURL()+"</li> <br>"+
+                		"<li>URL : "+details.getUrl()+"</li> <br>"+
                 		"<li>Contact Person:"+details.getContactPerson()+" </li> <br>"+
                 		"<li>Email: "+details.getEmail()+"</li>    <br>"+
                 		"<li>Phone :"+details.getPhoneNumber() +"</li> <br>"+

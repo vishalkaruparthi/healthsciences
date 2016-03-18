@@ -30,8 +30,16 @@ public class Internship extends AbstractEntity<Integer>{
 	private String organizationName;
 	
 	@Column(name="URL")
-	private String URL;
+	private String url;
 	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	@Column(name="Contact_Person_name")
 	private String contactPerson;
 	
@@ -171,9 +179,7 @@ public class Internship extends AbstractEntity<Integer>{
 		this.posted_Date = posted_Date;
 	}
 
-	public String getURL() {
-		return URL;
-	}
+
 
 	public State getState() {
 		return state;
@@ -183,9 +189,7 @@ public class Internship extends AbstractEntity<Integer>{
 		this.state = state;
 	}
 
-	public void setURL(String uRL) {
-		URL = uRL;
-	}
+
 
 	public String getContactPerson() {
 		return contactPerson;

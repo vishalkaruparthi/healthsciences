@@ -13,7 +13,7 @@ public class InternshipDetailsDTO {
 	
 	private Integer internshipID;
 	private String organizationName;
-	private String URL;
+	private String url;
 	private String contactPerson;
 	private String phoneNumber;
 	private String email;
@@ -67,12 +67,6 @@ public class InternshipDetailsDTO {
 	}
 	public void setStateId(StateDTO stateId) {
 		this.stateId = stateId;
-	}
-	public String getURL() {
-		return URL;
-	}
-	public void setURL(String uRL) {
-		URL = uRL;
 	}
 	public String getContactPerson() {
 		return contactPerson;
@@ -139,6 +133,12 @@ public class InternshipDetailsDTO {
 	}
 	public void setInternshipTypeList(List<InternshipTypeDTO> internshipTypeList) {
 		this.internshipTypeList = internshipTypeList;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 }

@@ -26,11 +26,10 @@ public class GetInternshipsListCriteriaDTO {
 	
 	private List<Integer> hoursWork;
 	
-	private List<Integer> academicPeriod;
+	//private List<Integer> academicPeriod;
 	
 	private List<Integer> internType;
 
-	private Integer payType;
 
 	public Integer getStateID() {
 		return stateID;
@@ -68,23 +67,6 @@ public class GetInternshipsListCriteriaDTO {
 		this.hoursWork = hoursWork;
 	}
 
-
-
-
-	public List<Integer> getAcademicPeriod() {
-		return academicPeriod;
-	}
-
-
-
-
-	public void setAcademicPeriod(List<Integer> academicPeriod) {
-		this.academicPeriod = academicPeriod;
-	}
-
-
-
-
 	public List<Integer> getInternType() {
 		return internType;
 	}
@@ -96,22 +78,4 @@ public class GetInternshipsListCriteriaDTO {
 		this.internType = internType;
 	}
 
-
-
-
-	public Integer getPayType() {
-		return payType;
-	}
-
-
-
-
-	public void setPayType(Integer payType) {
-		this.payType = payType;
-	}
-	
-	
-	
-
-	
 }

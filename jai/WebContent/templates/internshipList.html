@@ -39,26 +39,8 @@
             </div>    
         </div>
         
-        <div>
-            <label for="academicPeriod">Academic Period</label>
-            <div ng-repeat="academicPeriod in academicPeriods">
-                <div class="input-field col s3" style="margin-left:10px; margin-top:-10px;" >
-                    <input type="checkbox" class="filled-in" id={{"academicPeriods"+academicPeriod.id}}
-                           ng-checked="existsacademicPeriods(academicPeriod.id)" ng-click="toggleacademicPeriods(academicPeriod.id)"/>
-                    <label for={{"academicPeriods"+academicPeriod.id}} id="fontSize10">{{academicPeriod.name}}</label>
-                </div> <br>
-            </div>    
-        </div>
-        <div>
-            <label for="sortByState">Pay type </label>	
-            <div ng-repeat="payType in payTypes">
-                <div class="input-field col s3" style= "margin-left:10px;margin-top:-10px;" >
-                <input type="radio" id={{"payType"+payType.id}} name="payTypeRadio" class="with-gap" value={{payType.id}} ng-click="payTypeSelected()" ng-model="payTypesSelction.selected"/>
-                <label for={{"payType"+payType.id}} id="fontSize10">{{payType.name}}</label>
-                </div> <br>
-            </div>
-            
-        </div>
+        
+        
 </div>
 <div id="section">
     <div class="col s12 m8 l9">

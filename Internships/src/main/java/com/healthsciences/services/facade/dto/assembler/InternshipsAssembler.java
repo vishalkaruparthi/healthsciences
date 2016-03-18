@@ -30,7 +30,7 @@ public class InternshipsAssembler {
 	public static void Internship2InternshipdetailsDTO(Internship internship, InternshipDetailsDTO internshipDetails){
 		internshipDetails.setInternshipID(internship.getInternshipID());
 		internshipDetails.setOrganizationName(internship.getOrganizationName());
-		internshipDetails.setURL(internship.getURL());
+		internshipDetails.setUrl(internship.getUrl());
 		internshipDetails.setContactPerson(internship.getContactPerson());
 		internshipDetails.setPhoneNumber(internship.getPhoneNumber());
 		internshipDetails.setEmail(internship.getEmail());
@@ -98,10 +98,8 @@ public class InternshipsAssembler {
 	
 	public static void getIntenshipListCriteria2IntershipListCriteria(GetInternshipsListCriteriaDTO getCriteria, InternshipListCriteria listCriteria){
 		listCriteria.setStateID(getCriteria.getStateID());
-		listCriteria.setAcademicPeriod(getCriteria.getAcademicPeriod());
 		listCriteria.setHoursWork(getCriteria.getHoursWork());
 		listCriteria.setInternType(getCriteria.getInternType());
-		listCriteria.setPayType(getCriteria.getPayType());
 		listCriteria.setSortCriteria(getCriteria.getSortCriteria());
 		switch (getCriteria.getSortCriteria()) {
 			case 10:
@@ -170,7 +168,7 @@ public class InternshipsAssembler {
 	}
 	public static void InternshipDetailsDTO2InternshipDetails(InternshipDetailsDTO detailsDTO, Internship internship){
 		internship.setOrganizationName(detailsDTO.getOrganizationName());
-		internship.setURL(detailsDTO.getURL());
+		internship.setUrl(detailsDTO.getUrl());
 		internship.setContactPerson(detailsDTO.getContactPerson());
 		internship.setPhoneNumber(detailsDTO.getPhoneNumber());
 		internship.setEmail(detailsDTO.getEmail());

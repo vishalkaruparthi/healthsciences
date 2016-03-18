@@ -109,7 +109,7 @@ internshipModule.factory('internshipSubmit', ['httpcall', '$q', function(httpcal
         var errorcallback = function(resp){
             deferred.reject(resp);
         }
-        var url = "http://localhost:8080/Internships/internhsips/formSubmit";
+        var url = "http://localhost:8080/Internships/internships/formSubmit";
         var requestObj = {
             method : "POST",
             "url" : url,

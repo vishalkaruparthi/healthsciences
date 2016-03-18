@@ -3,8 +3,7 @@ var internshipModule = angular.module('internshipModule', ['ngRoute']).
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/form',{
             templateUrl : 'templates/internshipForm.html',
-            controller : 'InternshipFormController',
-            controllerAs : 'ctrlinit'
+            controller : 'InternshipFormController'
         });
         $routeProvider.otherwise({
             templateUrl : 'templates/internshipList.html',

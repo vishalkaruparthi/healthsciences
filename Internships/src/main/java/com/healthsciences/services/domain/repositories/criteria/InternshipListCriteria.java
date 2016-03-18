@@ -8,8 +8,6 @@ public class InternshipListCriteria extends BaseSearchCriteria{
 	private Integer sortCriteria;
 	private List<Integer> internType;
 	private List<Integer> hoursWork;
-	private List<Integer> academicPeriod;
-	private Integer payType;
 
 
 	public List<Integer> getHoursWork() {
@@ -18,14 +16,6 @@ public class InternshipListCriteria extends BaseSearchCriteria{
 
 	public void setHoursWork(List<Integer> hoursWork) {
 		this.hoursWork = hoursWork;
-	}
-
-	public List<Integer> getAcademicPeriod() {
-		return academicPeriod;
-	}
-
-	public void setAcademicPeriod(List<Integer> academicPeriod) {
-		this.academicPeriod = academicPeriod;
 	}
 
 	public List<Integer> getInternType() {
@@ -52,14 +42,6 @@ public class InternshipListCriteria extends BaseSearchCriteria{
 
 	public void setSortCriteria(Integer sortCriteria) {
 		this.sortCriteria = sortCriteria;
-	}
-
-	public Integer getPayType() {
-		return payType;
-	}
-
-	public void setPayType(Integer payType) {
-		this.payType = payType;
 	}
 
 }

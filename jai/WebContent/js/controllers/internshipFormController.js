@@ -1,70 +1,108 @@
 'use strict';
 
 internshipModule.controller('InternshipFormController',
-    ['toiJsontoString', 'stateList', 'internshipSubmit', function(toiJsontoString, stateList, internshipSubmit){
+    ['$scope', 'stateList', 'internshipSubmit', function($scope, stateList, internshipSubmit){
         var self = this;
-        self.titleA = "FORM FOR INTERNSHIPS (* Required Fields)";//Title of the page
-        /*
-         * Details JSON to be updated to server
-         * newDetails = {
-         * 				orgname : "",
-         * 				url : "",
-         * 				contactperson : "",
-         * 				contactTitle : "",
-         * 				email : "",
-         * 				telephone : "",
-         * 				toi : "",
-         * 				internDesc : "",
-         * 				hoursID : "",
-         * 				cityName : "",
-         * 				stateID: "",
-         * 				zipCode : "",
-         * 				amount : "",
-         * 				specialSkills : ""
-         *
-         * 			}
-         */
-        self.stateList = stateList.then;
+        $scope.titleA = "FORM FOR INTERNSHIPS (* Required Fields)";//Title of the page
+        
+        $scope.stateList = [];
+        
         stateList.then(function(value) {
-            self.stateList = value;
+            console.log(value);
+            $scope.stateList = value;
         }, function(reason) {
             alert('Failed to fetch states');
         });
 
 
-        self.newDetails = {};
-        self.stipendAmountHide = true;
-        self.typeOfinternship = {"a":false,"b":false, "c":false, "d":false};
-
-
-        self.registernewdetails = function(){
-            self.newDetails.toi = toiJsontoString(self.typeOfinternship);
-            self.newDetails.amount = self['int'+self.newDetails.paymentType] || 0;
-            console.log(self.newDetails);
-
+        $scope.newDetails = {};
+        $scope.stipendAmountHide = true;
+        
+        
+        $scope.internshipTypesSelected = [];
+        $scope.toggleIntershipTypes = function (item) {
+            var idx = $scope.internshipTypesSelected.indexOf(item);
+            if (idx > -1) $scope.internshipTypesSelected.splice(idx, 1);
+            else $scope.internshipTypesSelected.push(item);
+            console.log($scope.internshipTypesSelected);
+        };
+        $scope.existsIntershipTypes = function (item) {
+            return $scope.internshipTypesSelected.indexOf(item) > -1;
+        };
+        
+        
+        $scope.academicPeriodsSelected = [];
+        $scope.toggleacademicPeriods = function (item) {
+            var idx = $scope.academicPeriodsSelected.indexOf(item);
+            if (idx > -1) $scope.academicPeriodsSelected.splice(idx, 1);
+            else $scope.academicPeriodsSelected.push(item);
+            console.log($scope.academicPeriodsSelected)
+        };
+        $scope.existsacademicPeriods = function (item) {
+            return $scope.academicPeriodsSelected.indexOf(item) > -1;
+        };
+        
+        
+        $scope.scheduleTypesSelected = [];
+        $scope.toggleScheduleTypes = function (item) {
+            var idx = $scope.scheduleTypesSelected.indexOf(item);
+            if (idx > -1) $scope.scheduleTypesSelected.splice(idx, 1);
+            else $scope.scheduleTypesSelected.push(item);
+            console.log($scope.scheduleTypesSelected);
+        };
+        $scope.existsScheduleTypes = function (item) {
+            return $scope.scheduleTypesSelected.indexOf(item) > -1;
+        };
+        
+        
+        $scope.registernewdetails = function(){
+            
+            $scope.newDetails.amount = $scope['int'+$scope.newDetails.paymentType] || 0;
+            console.log($scope.newDetails);
+            
+            
+            var internShipTypesV = $scope.internshipTypesSelected;
+            var internshipTypesJSON = []
+            for(var it=0;it<internShipTypesV.length;it++){
+                  internshipTypesJSON.push({id:internShipTypesV[it]}); 
+            }
+            
+            var academicPeriods = $scope.academicPeriodsSelected;
+            var academicPeriodJSON = [];
+            for(var j=0;j<academicPeriods.length;j++){
+                academicPeriodJSON.push({id:academicPeriods[j]});
+            }
+            
+            var scheduleTypes = $scope.scheduleTypesSelected;
+            var scheduleTypesJSON = [];
+            for(var k=0;k<scheduleTypes.length;k++){
+                scheduleTypesJSON.push({hoursID:scheduleTypes[k]});
+            }
+            
             var intershipJson = {};
 
             var stateSub = {};
-            stateSub["stateid"] = self.newDetails.stateID;
+            stateSub["stateid"] = $scope.newDetails.stateID;
             intershipJson["stateId"] = stateSub;
 
-            var hoursJson = {};
-            hoursJson["hoursID"] = self.newDetails.hoursID;
-            intershipJson["hours_work"] = hoursJson;
-
-            intershipJson["organizationName"] = self.newDetails.orgname;
-            intershipJson["URL"] = self.newDetails.url;
-            intershipJson["contactPerson"] = self.newDetails.contactperson;
-            intershipJson["phoneNumber"] = self.newDetails.telephone;
-            intershipJson["email"] = self.newDetails.email;
-            intershipJson["internTypeID"] = self.newDetails.toi;
-            intershipJson["internDesc"] = self.newDetails.internDesc;
-            intershipJson["city"] = self.newDetails.cityName;
-            intershipJson["zipcode"] = self.newDetails.zipCode;
-            intershipJson["specialSkills"] = self.newDetails.specialSkills;
-            intershipJson["paytype"] = self.newDetails.paymentType;
-            intershipJson["payamount"] = self.newDetails.amount;
-            intershipJson["postedDate"] = "";
+            intershipJson["organizationName"] = $scope.newDetails.orgname;
+            intershipJson["url"] = $scope.newDetails.url.toString;
+            intershipJson["contactPerson"] = $scope.newDetails.contactperson;
+            intershipJson["phoneNumber"] = $scope.newDetails.telephone;
+            intershipJson["email"] = $scope.newDetails.email;
+            
+            intershipJson["internDesc"] = $scope.newDetails.internDesc;
+            intershipJson["city"] = $scope.newDetails.cityName;
+            intershipJson["zipcode"] = $scope.newDetails.zipCode;
+            intershipJson["specialSkills"] = $scope.newDetails.specialSkills;
+            intershipJson["payType"] = {id:$scope.newDetails.paymentType};
+            intershipJson["payamount"] = $scope.newDetails.amount;
+            intershipJson["postedDate"];
+            
+            intershipJson["internshipTypeList"] = internshipTypesJSON;
+            intershipJson["academicPeriodList"] = academicPeriodJSON;
+            intershipJson["hoursWorkList"] = scheduleTypesJSON;
+           
 
             var params = {};
             params["internship"] = intershipJson;

@@ -72,8 +72,7 @@ public class InternshipRepository extends BaseRepository<Internship, InternshipL
 					+ " join internship.academicPeriods academicPeriods"
 					+ " where internshiptype.internshipType.id not in (:types)"
 					+ " and hoursWork.hoursWork.hoursID not in (:hoursWorks)"
-					+ " and academicPeriods.academicPeriod.id not in (:academicPeriods)"
-					+ " and internship.payType.id = :payTypeID"
+					+ " and internship.state.stateID != :stateID"
 					+ " order by internship."+orderByQuery
 					);
 		}else{
@@ -83,34 +82,20 @@ public class InternshipRepository extends BaseRepository<Internship, InternshipL
 					+ " join internship.academicPeriods academicPeriods"
 					+ " where internshiptype.internshipType.id not in (:types)"
 					+ " and hoursWork.hoursWork.hoursID not in (:hoursWorks)"
-					+ " and academicPeriods.academicPeriod.id not in (:academicPeriods)"
-					+ " and internship.payType.id = :payTypeID"
 					+ " and internship.state.stateID = :stateID"
 					+ " order by internship."+orderByQuery
 					);
 		}
 		
-		
-		
+	
 		List<Object> internshipsList;
-		if(listCriteria.getStateID() == -1){
-			internshipsList = query.setParameter("types", listCriteria.getInternType()).setParameter("hoursWorks", listCriteria.getHoursWork())
-					.setParameter("academicPeriods", listCriteria.getAcademicPeriod()).setParameter("payTypeID", listCriteria.getPayType())
+		internshipsList = query.setParameter("types", listCriteria.getInternType()).setParameter("hoursWorks", listCriteria.getHoursWork())
+					.setParameter("stateID", 43)
 					.getResultList();
-		}else{
-			internshipsList = query.setParameter("types", listCriteria.getInternType()).setParameter("hoursWorks", listCriteria.getHoursWork())
-					.setParameter("academicPeriods", listCriteria.getAcademicPeriod()).setParameter("payTypeID", listCriteria.getPayType()).setParameter("stateID", listCriteria.getStateID())
-					.getResultList();
-		}
-		
-		
 		
 		return internshipsList;
 	}
-	
-	
-	
-	
+
 	@Override
 	protected List<Predicate> buildConditions(Root<Internship> from, InternshipListCriteria criteria){
 		List<Predicate> predicateList = new ArrayList<Predicate>();
