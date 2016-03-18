@@ -53,11 +53,17 @@
                     <p><span class="blue-text text-darken-2" style="font-size: 12px">Organization Name:</span>
                         <span style="font-size: 12px">{{internships.organizationName}}</span> <br>
                         <span class="blue-text text-darken-2" style="font-size: 12px">Internship Type: </span>
-                        <span style="font-size: 12px" >{{internships}</span> <br>
+                        <span style="font-size: 12px" ng-repeat="internshipTypeList in internships.internshipTypeList">
+                            {{internshipTypeList.title+", "}}
+                        </span> <br>
                         <span class="blue-text text-darken-2" style="font-size: 12px">Description: </span>
                         <span style="font-size: 12px">{{internships.internDesc}}</span> <br>
+                        <span class="blue-text text-darken-2" style="font-size: 12px">Pay Type: </span>
+                        <span style="font-size: 12px">{{internships.payType.title}}</span> <br>
                         <span class="blue-text text-darken-2" style="font-size: 12px">Duration: </span>
-                        <span style="font-size: 12px">{{internships.internDesc}} </span>
+                        <span style="font-size: 12px" ng-repeat="hoursWorkList in internships.hoursWorkList">
+                            {{hoursWorkList.title+", "}} 
+                        </span>
                         <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px"> Pay: </span>
                         <span style="font-size: 12px"> ${{internships.payamount}} per hour</span>
                         <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px"> URL: </span>

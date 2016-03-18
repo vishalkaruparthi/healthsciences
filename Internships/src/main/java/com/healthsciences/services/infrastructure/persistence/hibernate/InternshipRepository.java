@@ -71,7 +71,7 @@ public class InternshipRepository extends BaseRepository<Internship, InternshipL
 					+ " join internship.hoursWork hoursWork"
 					+ " join internship.academicPeriods academicPeriods"
 					+ " where internshiptype.internshipType.id not in (:types)"
-					+ " and internship.recordStatus = APPROVED"
+					+ " and internship.recordStatus = :status"
 					+ " and hoursWork.hoursWork.hoursID not in (:hoursWorks)"
 					+ " and internship.state.stateID != :stateID"
 					+ " order by internship."+orderByQuery
