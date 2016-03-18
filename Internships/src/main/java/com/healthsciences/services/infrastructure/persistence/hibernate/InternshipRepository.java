@@ -71,6 +71,7 @@ public class InternshipRepository extends BaseRepository<Internship, InternshipL
 					+ " join internship.hoursWork hoursWork"
 					+ " join internship.academicPeriods academicPeriods"
 					+ " where internshiptype.internshipType.id not in (:types)"
+					+ " and internship.recordStatus = APPROVED"
 					+ " and hoursWork.hoursWork.hoursID not in (:hoursWorks)"
 					+ " and internship.state.stateID != :stateID"
 					+ " order by internship."+orderByQuery
@@ -81,6 +82,7 @@ public class InternshipRepository extends BaseRepository<Internship, InternshipL
 					+ " join internship.hoursWork hoursWork"
 					+ " join internship.academicPeriods academicPeriods"
 					+ " where internshiptype.internshipType.id not in (:types)"
+					+ " and internship.recordStatus = :status"
 					+ " and hoursWork.hoursWork.hoursID not in (:hoursWorks)"
 					+ " and internship.state.stateID = :stateID"
 					+ " order by internship."+orderByQuery
@@ -89,7 +91,7 @@ public class InternshipRepository extends BaseRepository<Internship, InternshipL
 		
 	
 		List<Object> internshipsList;
-		internshipsList = query.setParameter("types", listCriteria.getInternType()).setParameter("hoursWorks", listCriteria.getHoursWork())
+		internshipsList = query.setParameter("types", listCriteria.getInternType()).setParameter("status", "APPROVED").setParameter("hoursWorks", listCriteria.getHoursWork())
 					.setParameter("stateID", 43)
 					.getResultList();
 		
