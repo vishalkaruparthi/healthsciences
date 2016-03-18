@@ -23,10 +23,6 @@ internshipModule.controller('InternshipListController', ['$scope', 'intenshipsBy
         
         
         this.getList = function(){
-//            console.log("cities selected"+$scope.citiesSelected);
-//            console.log("internship types selected"+$scope.internshipTypesSelected);
-//            console.log("shedule types selected"+$scope.scheduleTypesSelected);
-//            console.log("academicPeriods types selected"+$scope.academicPeriodsSelected);
             var internTypes = self.arrayNegations(self.allInternTypes, $scope.internshipTypesSelected);
             var scheduleTypes = self.arrayNegations(self.allscheduleTypes, $scope.scheduleTypesSelected);
             
@@ -52,7 +48,7 @@ internshipModule.controller('InternshipListController', ['$scope', 'intenshipsBy
             console.log("payload "+payload);
             intenshipsByState(payload).then(
                 function(resp){
-                    console.log(resp);
+                    console.log("internship list details"+JSON.stringify(resp.internshipList));
                     $scope.internshipList = resp.internshipList;
                 },
                 function(resp){

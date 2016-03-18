@@ -18,7 +18,7 @@ public class Mail {
 	public static void sendMail(InternshipDetailsDTO details, String status) throws FacadeBadCredentialsException{
 		final String userName = "vishal.kpty@gmail.com";
 		final String password = "Ilva0f$e";
-		final String toMail = "vishal.karuparthi@live.com";
+		final String toMail = "rpk003@shsu.edu";
 		
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");

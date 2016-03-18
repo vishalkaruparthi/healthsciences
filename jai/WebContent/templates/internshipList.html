@@ -1,10 +1,10 @@
-<div>
 
-<div id="header">
+
+<div id="header" style=background-color:#ffab40;color:white;text-align:center;padding:5px;>
     <h1>Internships List</h1>
 </div>
 
-<div class="nav"> 
+<div id="nav" style= line-height:30px;background-color:#eeeeee;height:600px;width:25%;float:left;padding:5px;> 
     <div class="col s12 m4 l3">
         <div>
             <label for="sortByState">State </label>	
@@ -40,10 +40,11 @@
         </div>
         
         
-        
+
+</div>        
 </div>
-<div id="section">
-    <div class="col s12 m8 l9">
+<div id="section" style=width:75%;float:left;padding:10px;>
+    <div class="col s9 m8 l9">
         <div class="collection">
             <ul class="collection">
                 <li class="collection-item avatar" ng-repeat="internships in internshipList">
@@ -52,7 +53,7 @@
                     <p><span class="blue-text text-darken-2" style="font-size: 12px">Organization Name:</span>
                         <span style="font-size: 12px">{{internships.organizationName}}</span> <br>
                         <span class="blue-text text-darken-2" style="font-size: 12px">Internship Type: </span>
-                        <span style="font-size: 12px">{{internships.internTypeID}}</span> <br>
+                        <span style="font-size: 12px" >{{internships}</span> <br>
                         <span class="blue-text text-darken-2" style="font-size: 12px">Description: </span>
                         <span style="font-size: 12px">{{internships.internDesc}}</span> <br>
                         <span class="blue-text text-darken-2" style="font-size: 12px">Duration: </span>
@@ -81,4 +82,3 @@
         </div>
     </div>
 </div> 
-</div>

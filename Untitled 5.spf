@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>gdms</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-8959088811850776962</string>
+			<key>name</key>
+			<string>Local</string>
+			<key>port</key>
+			<integer>3306</integer>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>latin1</string>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJX
+			TlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAF
+			gAdUdHlwZVRyb3dzXxAdU2VsZWN0aW9uRGV0YWlsVHlwZU5TSW5k
+			ZXhTZXTSFwsYGVxOU1JhbmdlQ291bnQQAIAG0hscHR5aJGNsYXNz
+			bmFtZVgkY2xhc3Nlc1pOU0luZGV4U2V0oh8gWk5TSW5kZXhTZXRY
+			TlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVk
+			QXJjaGl2ZXLRJidUZGF0YYABAAgAEQAaACMALQAyADcAQABGAE0A
+			VQBgAGcAagBsAG4AcQBzAHUAdwB8AIEAoQCmALMAtQC3ALwAxwDQ
+			ANsA3gDpAPIA9wEEAQcBGQEcASEAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1108, 720}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>table</key>
+			<string>nextval</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>294</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>CREATE TABLE ORD (
+  ORDID INT NOT NULL AUTO_INCREMENT
+  PRIMARY KEY (ORDID)
+)
+AUTO_INCREMENT = 622</string>
+		<string>CREATE TABLE ORD (
+  ORDID INT NOT NULL AUTO_INCREMENT
+  PRIMARY KEY (ordid)
+)
+AUTO_INCREMENT = 622</string>
+		<string>CREATE TABLE ORD (
+  ORDID INT NOT NULL AUTO_INCREMENT,
+  //Rest of table code
+  PRIMARY KEY (ordid)
+)
+AUTO_INCREMENT = 622</string>
+		<string>//Rest of table code
+  PRIMARY KEY (ordid)
+)
+AUTO_INCREMENT = 622</string>
+		<string>CREATE SEQUENCE auto_customer1 START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE</string>
+		<string>CREATE SEQUENCE auto_customer1 START WITH 1
+ INCREMENT BY 1
+ NOCACHE
+ NOCYCLE</string>
+		<string>CREATE SEQUENCE auto_customer1 START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE</string>
+		<string>CREATE TABLE ORD (
+  ORDID INT NOT NULL AUTO_INCREMENT,
+  //Rest of table code
+  PRIMARY KEY (ordid)
+)</string>
+		<string>CREATE SEQUENCE MovieSeq</string>
+		<string>select nextval('auto_customer1')</string>
+		<string>select nextval(auto_customer1)</string>
+		<string>DROP FUNCTION IF EXISTS nextval;
+CREATE FUNCTION nextval (auto_customer1 VARCHAR(50))
+RETURNS INTEGER
+CONTAINS SQL
+BEGIN
+   UPDATE sequence
+   SET          current_value = current_value + increment
+   WHERE name = auto_customer1;
+   RETURN currval(auto_customer1);
+END</string>
+		<string>select nextval(customerAuto) from auto_customer1</string>
+		<string>select customerAuto from auto_customer1</string>
+		<string>select customerAuto.NEXTVAL from auto_customer1</string>
+		<string>select id.NEXTVAL from auto_customer1</string>
+		<string>select auto_customer1.NEXTVAL from dual</string>
+		<string>ALTER TABLE auto_customer1 AUTO_INCREMENT = 500</string>
+		<string>CREATE TABLE auto_customer1 (id INT NOT NULL)</string>
+		<string>CREATE SEQUENCE auto_customer1
+  MINVALUE 1
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 2000</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.6.28</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
