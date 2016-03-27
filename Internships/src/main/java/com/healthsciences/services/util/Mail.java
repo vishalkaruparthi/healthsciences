@@ -50,6 +50,10 @@ public class Mail {
                 		"<li>Contact Person:"+details.getContactPerson()+" </li> <br>"+
                 		"<li>Email: "+details.getEmail()+"</li>    <br>"+
                 		"<li>Phone :"+details.getPhoneNumber() +"</li> <br>"+
+                		"<li>City :"+details.getCity() +"</li> <br>"+
+                		"<li>Pay :"+details.getPayamount() +"</li> <br>"+
+                		"<li>Phone :"+details.getPayType()+"</li> <br>"+
+                		"<li>Phone :"+details.getPhoneNumber() +"</li> <br>"+
                 		"<a href="+URL+">Approve</a>", "text/html");
                 Transport.send(message);
                 

@@ -1,10 +1,22 @@
 
-
-<div id="header" style=background-color:#ffab40;color:white;text-align:center;padding:5px;>
-    <h1>Internships List</h1>
+<div id="header" style="width: 100%;padding-top: 10px;padding-bottom: 10px;background-color: #333798;
+    height: 130px;overflow: auto;">
+    
+    <div id="logo" style="font-size: 24pt;color: #08a3d9;width: 33%;float: left;">
+        <a href="//www.shsu.edu" class="shsu-logo">
+	    		<img style=" width:250px; height:100px" src="//www.shsu.edu/global/images/responsive/shsu.png" alt="Sam Houston State University">
+	    	</a>
+    </div>
+    
+    <div id="header-middle" style=" width: 67%;float: left;margin-left: auto;margin-right: auto;">
+		<h3 style="color: white;">INTERSHIPS LIST</h3>   
+    </div>
+    
+   <!--   <div id="header-right" style="float: right;width: 33%;text-align: center;">
+    </div>-->
 </div>
 
-<div id="nav" style= line-height:30px;background-color:#eeeeee;height:600px;width:25%;float:left;padding:5px;> 
+<div id="nav" style= line-height:30px;background-color:#333798;height:100%;width:25%;float:left;padding:5px;> 
     <div class="col s12 m4 l3">
         <div>
             <label for="sortByState">State </label>	
@@ -44,47 +56,54 @@
 </div>        
 </div>
 <div id="section" style=width:75%;float:left;padding:10px;>
-    <div class="col s9 m8 l9">
-        <div class="collection">
+        
             <ul class="collection">
                 <li class="collection-item avatar" ng-repeat="internships in internshipList">
                     <span class="title blue-text text-darken-2" > Internship type and Organization</span>
 
-                    <p><span class="blue-text text-darken-2" style="font-size: 12px">Organization Name:</span>
-                        <span style="font-size: 12px">{{internships.organizationName}}</span> <br>
-                        <span class="blue-text text-darken-2" style="font-size: 12px">Internship Type: </span>
-                        <span style="font-size: 12px" ng-repeat="internshipTypeList in internships.internshipTypeList">
+                    <p style= "padding-top:5px;padding-left:30px;padding-bottom:5px;">
+                    	<span class="blue-text text-darken-2" style="font-size: 14px;">Organization Name:</span>
+                        <span style="font-size: 14px">{{internships.organizationName}}</span> <br>
+                        <span class="blue-text text-darken-2" style="font-size: 14px">Internship Type: </span>
+                        <span style="font-size: 14px" ng-repeat="internshipTypeList in internships.internshipTypeList">
                             {{internshipTypeList.title+", "}}
                         </span> <br>
-                        <span class="blue-text text-darken-2" style="font-size: 12px">Description: </span>
-                        <span style="font-size: 12px">{{internships.internDesc}}</span> <br>
-                        <span class="blue-text text-darken-2" style="font-size: 12px">Pay Type: </span>
-                        <span style="font-size: 12px">{{internships.payType.title}}</span> <br>
-                        <span class="blue-text text-darken-2" style="font-size: 12px">Duration: </span>
-                        <span style="font-size: 12px" ng-repeat="hoursWorkList in internships.hoursWorkList">
+                        <span class="blue-text text-darken-2" style="font-size: 14px">Description: </span>
+                        <span style="font-size: 14px">{{internships.internDesc}}</span> <br>
+                        <span class="blue-text text-darken-2" style="font-size: 14px">Pay Type: </span>
+                        <span style="font-size: 14px">{{internships.payType.title}}</span> <br>
+                        <span class="blue-text text-darken-2" style="font-size: 14px">Duration: </span>
+                        <span style="font-size: 14px" ng-repeat="hoursWorkList in internships.hoursWorkList">
                             {{hoursWorkList.title+", "}} 
-                        </span>
-                        <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px"> Pay: </span>
-                        <span style="font-size: 12px"> ${{internships.payamount}} per hour</span>
-                        <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px"> URL: </span>
-                        <a target="_blank" style="font-size: 12px" href=http://{{internships.url}}> {{internships.url}}</a>
+                        </span><br>
+                        <span class="blue-text text-darken-2" style="font-size: 14px"> Pay: </span>
+                        <span style="font-size: 14px"> ${{internships.payamount}} per hour</span><br>
+                        <span class="blue-text text-darken-2" style="font-size: 14px"> URL: </span>
+                        <a target="_blank" style="font-size: 14px" href=http://{{internships.url}}> {{internships.url}}</a>
                     </p>
                     <span class=" title blue-text text-darken-2"> Contact Person Details</span>
-                    <p>
-                        <span class="blue-text text-darken-2" style="font-size: 12px">Name:</span>
-                        <span style="font-size: 12px">{{internships.contactPerson}} </span>
-                        <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px">Phone:</span>
-                        <span style="font-size: 12px">{{internships.phoneNumber}}</span>
-                        <span class="blue-text text-darken-2" style="margin-left: 50px;font-size: 12px">Email:</span>
-                        <span style="font-size: 12px">{{internships.email}}</span>
+                    <p style= "padding-left: 30px;padding-top:5px;padding-bottom:5px;">
+                        <span class="blue-text text-darken-2" style="font-size: 14px">Name:</span>
+                        <span style="font-size: 14px">{{internships.contactPerson}} </span> <br>
+                        <span class="blue-text text-darken-2" style="font-size: 14px;">Phone:</span>
+                        <span style="font-size: 14px">{{internships.phoneNumber}}</span><br>
+                        <span class="blue-text text-darken-2" style="font-size: 14px;"> Email:</span>
+                        <span style="font-size: 14px">{{internships.email}}</span>
                     </p>
-                    <p>
-                        <span style="font-size: 12px">{{internships.city}}, {{internships.stateId.state_name}} - {{internships.zipcode}}</span>
-                        <span class="blue-text text-darken-2" style="align:right;font-size:12px">Date Posted:</span>
-                        <span style="font-size: 12px">{{internships.postedDate}}</span>
+                    
+                    <span class=" title blue-text text-darken-2"> Address</span>
+                    <p style= "padding-left: 30px;padding-top:5px;padding-bottom:5px;">
+                    	<span class="blue-text text-darken-2" style="font-size: 14px">City:</span>
+                        <span style="font-size: 14px">{{internships.city}} </span><br>
+                    	<span class="blue-text text-darken-2" style="font-size: 14px">State:</span>
+                        <span style="font-size: 14px">{{internships.stateId.state_name}}</span><br>
+                    	<span class="blue-text text-darken-2" style="font-size: 14px">Zip Code:</span>
+                        <span style="font-size: 14px"> {{internships.zipcode}}</span>
+                        <span class="blue-text text-darken-2" style="align:right;font-size:14px">Date Posted:</span>
+                        <span style="font-size: 14px">{{internships.postedDate}}</span>
                     </p>
                 </li>
             </ul>
-        </div>
-    </div>
-</div> 
+        
+</div>
+

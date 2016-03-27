@@ -2,14 +2,8 @@
  * Materialize v0.97.5 (http://materializecss.com)
  * Copyright 2014-2015 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
- */
-#header {
-    background-color:black;
-    
-    color:white;
-    text-align:center;
-    padding:5px;
-}
+ *#333798/
+
 #nav {
     line-height:30px;
     background-color:#eeeeee;
@@ -731,7 +725,7 @@
 }
 
 .blue-text.text-darken-2 {
-  color: #1976D2 !important;
+  color: #333798 !important;
 }
 
 .blue.darken-3 {
