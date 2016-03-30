@@ -83,6 +83,7 @@ public class InternshipsDBService implements IInternShipsService{
 		try {
 			Internship internship = new Internship();
 			InternshipsAssembler.InternshipDetailsDTO2InternshipDetails(setDetails, internship);
+			
 			internshipRepo.save(internship);
 			internship.getInternshipID();
 			status = internship.getInternshipID().toString();

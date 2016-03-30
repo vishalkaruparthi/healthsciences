@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.joda.time.LocalDateTime;
+
 import com.healthsciences.services.domain.model.AcademicPeriod;
 import com.healthsciences.services.domain.model.AcademicPeriodInternship;
 import com.healthsciences.services.domain.model.HoursWork;
@@ -177,7 +179,7 @@ public class InternshipsAssembler {
 		internship.setZipcode(detailsDTO.getZipcode());
 		internship.setSpecial_Skills(detailsDTO.getSpecialSkills());
 		internship.setPay_Amount(detailsDTO.getPayamount());
-		internship.setPosted_Date(detailsDTO.getPostedDate());
+		internship.setPosted_Date(LocalDateTime.now());
 		internship.setRecordStatus(detailsDTO.getStatus());
 
 		State state = new State();
