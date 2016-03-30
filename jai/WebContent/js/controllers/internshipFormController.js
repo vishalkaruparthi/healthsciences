@@ -1,7 +1,7 @@
 'use strict';
 
 internshipModule.controller('InternshipFormController',
-    ['$scope', 'stateList', 'internshipSubmit', function($scope, stateList, internshipSubmit){
+    ['$scope', 'stateList', 'internshipSubmit', '$location',function($scope, stateList, internshipSubmit, $location){
         var self = this;
         $scope.titleA = "FORM FOR INTERNSHIPS (* Required Fields)";//Title of the page
         
@@ -86,7 +86,7 @@ internshipModule.controller('InternshipFormController',
             intershipJson["stateId"] = stateSub;
 
             intershipJson["organizationName"] = $scope.newDetails.orgname;
-            intershipJson["url"] = $scope.newDetails.url.toString;
+            intershipJson["url"] = $scope.newDetails.url;
             intershipJson["contactPerson"] = $scope.newDetails.contactperson;
             intershipJson["phoneNumber"] = $scope.newDetails.telephone;
             intershipJson["email"] = $scope.newDetails.email;
@@ -111,6 +111,7 @@ internshipModule.controller('InternshipFormController',
             console.log(payload);
 
             internshipSubmit(payload).then(function(value){
+                $location.url('/submit/successfull');
                 console.log(value);
             },function(value){
                 console.log(value);

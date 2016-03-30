@@ -32,7 +32,7 @@ public class Mail {
             	}
             });
         	try {
-    			String URL = "http://localhost:8080/jai/InternshipApprove.html#?internshipID="+status;
+    			String URL = "http://localhost:8080/jai/#/approve/"+status;
     			
     			Message message = new MimeMessage(session);
     			message.setFrom(new InternetAddress(userName));

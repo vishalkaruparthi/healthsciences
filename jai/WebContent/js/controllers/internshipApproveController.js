@@ -1,9 +1,9 @@
 'use strict';
-internshipModule.controller('internship-approve-controller',
-        ['internshipApproveSvc', '$location', function(internshipApproveSVC, $location){
+internshipModule.controller('internshipApproveController',
+        ['internshipApproveSvc', '$location', '$routeParams',function(internshipApproveSVC, $location, $routeParams){
             var self = this;
             self.isApproved = false;
-            var internshipID = $location.search()["internshipID"];
+            var internshipID = $routeParams.internshipID;
             console.log(internshipID);
             var payload = {};
             payload["internshipID"] = internshipID;
