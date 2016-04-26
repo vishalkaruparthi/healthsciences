@@ -11,7 +11,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.naming.AuthenticationException;
 
+import com.healthsciences.services.domain.model.AcademicPeriod;
+import com.healthsciences.services.facade.dto.entities.AcademicPeriodDTO;
+import com.healthsciences.services.facade.dto.entities.HoursWorkDTO;
 import com.healthsciences.services.facade.dto.entities.InternshipDetailsDTO;
+import com.healthsciences.services.facade.dto.entities.InternshipTypeDTO;
 import com.healthsciences.services.facade.exceptions.FacadeBadCredentialsException;
 
 public class Mail {
@@ -45,15 +49,40 @@ public class Mail {
                     + "Email: "+ details.getEmail() +"\n\n"
                     + "Phone: "+ details.getPhoneNumber() +"\n\n"
                     + "ID "+status);
-                message.setContent("<li>Organization Name : "+details.getOrganizationName()+"</li> <br>"+
-                		"<li>URL : "+details.getUrl()+"</li> <br>"+
-                		"<li>Contact Person:"+details.getContactPerson()+" </li> <br>"+
+                
+                String academicPeriodList = "";
+                for (AcademicPeriodDTO i : details.getAcademicPeriodList()) {
+                	academicPeriodList = academicPeriodList +", "+ i.getTitle();
+				}
+                
+                String hoursWorkList = "";
+                for (HoursWorkDTO i : details.getHoursWorkList()) {
+                	hoursWorkList = hoursWorkList+ ","+ i.getTitle()+"("+i.getHours_week()+"/week "+i.getTotalHours()+" hours)";
+				}
+                
+                String internshipList = "";
+                for (InternshipTypeDTO i : details.getInternshipTypeList()) {
+                	internshipList = internshipList + i.getTitle();
+				}
+                
+                message.setContent("<li>Organization Name: "+details.getOrganizationName()+"</li> <br>"+
+                		"<li>URL: "+details.getUrl()+"</li> <br>"+
+                		"<li>Contact Person: "+details.getContactPerson()+" </li> <br>"+
                 		"<li>Email: "+details.getEmail()+"</li>    <br>"+
-                		"<li>Phone :"+details.getPhoneNumber() +"</li> <br>"+
-                		"<li>City :"+details.getCity() +"</li> <br>"+
-                		"<li>Pay :"+details.getPayamount() +"</li> <br>"+
-                		"<li>Phone :"+details.getPayType()+"</li> <br>"+
-                		"<li>Phone :"+details.getPhoneNumber() +"</li> <br>"+
+                		"<li>Phone: "+details.getPhoneNumber() +"</li> <br>"+
+                		"<li>City: "+details.getCity() +"</li> <br>"+
+                		"<li>Pay: "+details.getPayamount() +"</li> <br>"+
+                		"<li>Phone: "+details.getPayType()+"</li> <br>"+
+                		"<li>Phone: "+details.getPhoneNumber() +"</li> <br>"+
+                		"<li>Internship desc: "+details.getInternDesc()+"</li> <br>"+
+                		"<li>Special Skills: "+details.getSpecialSkills()+"<li><br>"+
+                		"<li>Zip Code: "+details.getZipcode()+"</li><br>"+
+                		"<li>Academic Period List: "+academicPeriodList+"</li><br>"+
+                		"<li>Hours Work List: "+ hoursWorkList+"</li><br>"+
+                		"<li>Internship Type List: "+internshipList+"</li><br>"+
+                		"<li>Posted Date: "+details.getPostedDate()+"</li><br>"+
+                		"<li>State: "+details.getStateId().getState_name()+"</li><br>"+
+                		
                 		"<a href="+URL+">Approve</a>", "text/html");
                 Transport.send(message);
                 
